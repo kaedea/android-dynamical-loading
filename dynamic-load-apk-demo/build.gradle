@@ -1,0 +1,44 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+def dlPath = '/sdcard/DynamicLoadHost'
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+    def upload = { ->
+        try {
+            exec {
+                commandLine android.adbExe, 'shell', 'mkdir', dlPath
+            }
+        }
+        catch (ignored) {
+        }
+
+        exec {
+            commandLine android.adbExe, 'push', project.name + '-debug.apk', dlPath
+            workingDir project.projectDir.toString() + '/build/outputs/apk/'
+        }
+
+    }
+
+    task uploadDebug << {
+        upload()
+    }
+
+    task buildLib (type: Jar, dependsOn:'compileReleaseJava') {
+        from (project.buildDir.toString()+'/intermediates/classes/release')
+    }
+}

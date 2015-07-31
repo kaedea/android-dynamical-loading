@@ -1,0 +1,2 @@
+include ':plugLoadMgr'
+include ':plugLoadDemo'
