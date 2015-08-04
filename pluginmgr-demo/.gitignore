@@ -2,3 +2,4 @@
 /.idea/
 /.gradle/
 *.iml
+.gradle

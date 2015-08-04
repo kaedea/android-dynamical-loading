@@ -1,3 +1,4 @@
-/bin/
-/gen/
 /build/
+/.idea/
+/.gradle/
+*.iml
