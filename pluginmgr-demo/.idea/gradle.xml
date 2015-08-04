@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/plugLoadDemo" />
             <option value="$PROJECT_DIR$/plugLoadMgr" />
+            <option value="$PROJECT_DIR$/testapk" />
           </set>
         </option>
       </GradleProjectSettings>

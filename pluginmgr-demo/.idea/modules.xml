@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PlugLoadDemo_as_dev.iml" filepath="$PROJECT_DIR$/PlugLoadDemo_as_dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugLoadDemo/plugLoadDemo.iml" filepath="$PROJECT_DIR$/plugLoadDemo/plugLoadDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/plugLoadMgr/plugLoadMgr.iml" filepath="$PROJECT_DIR$/plugLoadMgr/plugLoadMgr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pluginmgr-demo.iml" filepath="$PROJECT_DIR$/pluginmgr-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testapk/testapk.iml" filepath="$PROJECT_DIR$/testapk/testapk.iml" />
     </modules>
   </component>
 </project>
