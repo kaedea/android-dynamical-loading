@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="dexmaker-1.1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/plugLoadMgr/libs/dexmaker-1.1.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
