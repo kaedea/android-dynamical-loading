@@ -12,19 +12,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class NativeBlurProcess {
 
-    private static AtomicBoolean isLoadLibraryOk = new AtomicBoolean(false);
+    public static AtomicBoolean isLoadLibraryOk = new AtomicBoolean(false);
 
 	private static native void functionToBlur(Bitmap bitmapOut, int radius, int threadCount, int threadIndex, int round);
-
-	static {
-        try {
-            System.loadLibrary("stackblur");
-            isLoadLibraryOk.set(true);
-            Log.i("NativeBlurProcess", "loadLibrary success!");
-        } catch (Throwable throwable) {
-	        Log.i("NativeBlurProcess", "loadLibrary error!" + throwable);
-        }
-	}
 
 	public static Bitmap blur(Bitmap original, float radius, boolean useMultiThread) {
         if (!isLoadLibraryOk.get()) {
