@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center_vertical"
+              android:background="?attr/selectableItemBackground"
+              tools:background="#eee"
+              android:layout_height="wrap_content">
+    <TextView android:layout_marginTop="10dp" android:layout_marginBottom="10dp" android:id="@+id/tv_item_samplelist_recyclerview" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="HELLO" android:textSize="18sp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:singleLine="true" android:ellipsize="marquee"/>
+   <!-- <View android:layout_width="match_parent" android:layout_height="1px" android:background="#aaa"></View>-->
+
+</LinearLayout>
