@@ -1,17 +1,21 @@
 package me.kaede.android_loading_dex;
 
-import akatuki.kaede.utils.KaedeUtil;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-import dalvik.system.DexClassLoader;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+
+import dalvik.system.DexClassLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,36 +27,27 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void onLoadDexCLick(View v){
-		if (KaedeUtil.copyFileFromAssetsToSd(this, "test_dexloader.jar", Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "test_dexloader.jar")) {
-			Log.e(TAG, "成功复制jar到SD卡");
+		if (copyFileFromAssetsToSd(this, "plugin-dex.dex", Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "plugin-dex.dex")) {
+			Log.e(TAG, "成功复制dex到SD卡");
 
-			final File optimizedDexOutputPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "test_dexloader.jar");
+			final File optimizedDexOutputPath = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "plugin-dex.dex");
 
-			// 无法直接从SD卡加载.dex文件，需要指定APP缓存目录（.dex文件会被解压到此目录）
 			File dexOutputDir = this.getDir("dex", 0);
 			Log.e(TAG, "dexOutputDir:" + dexOutputDir.getAbsolutePath());
 			DexClassLoader cl = new DexClassLoader(optimizedDexOutputPath.getAbsolutePath(), dexOutputDir.getAbsolutePath(), null, getClassLoader());
-			Class libProviderClazz = null;
+			Class mLoadClass = null;
 
 			try {
-				libProviderClazz = cl.loadClass("me.kaede.dexclassloader.MyLoader");
+				mLoadClass = cl.loadClass("kaede.me.pluginsoucre.Foo");
 
-				// 遍历类里所有方法
-				Method[] methods = libProviderClazz.getDeclaredMethods();
-				for (int i = 0; i < methods.length; i++) {
-					Log.e(TAG, methods[i].toString());
-				}
-
-				Method start = libProviderClazz.getDeclaredMethod("func");// 获取方法
-				start.setAccessible(true);// 未加这句之前报了一个错误：access to method
-				// denied 加上之后可以了。
-				String string = (String) start.invoke(libProviderClazz.newInstance());// 调用方法
+				Method foo = mLoadClass.getDeclaredMethod("foo");// 获取方法
+				foo.setAccessible(true);
+				String string = (String) foo.invoke(mLoadClass.newInstance());// 调用方法
 				Log.e(TAG, string);
 
 				Toast.makeText(this, string, Toast.LENGTH_LONG).show();
 
 			} catch (Exception exception) {
-				// Handle exception gracefully here.
 				exception.printStackTrace();
 			}
 
@@ -61,19 +56,18 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void onLoadApkCLick(View v){
-		if (KaedeUtil.copyFileFromAssetsToSd(this, "test_DexClassLoader.apk", Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "test_DexClassLoader.apk")) {
+		if (copyFileFromAssetsToSd(this, "plugin-apk.apk", Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "plugin-apk.apk")) {
 			Log.e(TAG, "成功复制apk到SD卡");
-			String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "test_DexClassLoader.apk";
+			String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "plugin-apk.apk";
 			try {
 
-				// 4.1以后不能够将optimizedDirectory设置到sd卡目录， 否则抛出异常.
 				File optimizedDirectoryFile = getDir("dex", 0);
 				DexClassLoader classLoader = new DexClassLoader(path, optimizedDirectoryFile.getAbsolutePath(), null, getClassLoader());
 
 				// 通过反射机制调用
-				Class mLoadClass = classLoader.loadClass("me.kaede.dexclassloader.MainActivity");
-				Constructor constructor = mLoadClass.getConstructor(new Class[] {});
-				Object testActivity = constructor.newInstance(new Object[] {});
+				Class mLoadClass = classLoader.loadClass("kaede.me.pluginsoucre.MainActivity");
+				Constructor constructor = mLoadClass.getConstructor(new Class[]{});
+				Object mainActivity = constructor.newInstance(new Object[]{});
 
 				// 遍历类里所有方法
 				Method[] methods = mLoadClass.getDeclaredMethods();
@@ -81,16 +75,35 @@ public class MainActivity extends AppCompatActivity {
 					Log.e(TAG, methods[i].toString());
 				}
 
-				// 获取sayHello方法
-				Method method = mLoadClass.getMethod("func");
+				Method method = mLoadClass.getDeclaredMethod("biu",Context.class,String.class);
 				method.setAccessible(true);
-				Object content = method.invoke(testActivity);
-				Toast.makeText(this, content.toString(), Toast.LENGTH_LONG).show();
+				method.invoke(mainActivity, new Object[]{this, "Loading apk success!"});
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
+	}
+
+	public static boolean copyFileFromAssetsToSd(Context context, String fileName, String path) {
+		boolean copyIsFinish = false;
+		try {
+			InputStream is = context.getAssets().open(fileName);
+			File file = new File(path);
+			file.createNewFile();
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] temp = new byte[1024];
+			int i = 0;
+			while ((i = is.read(temp)) > 0) {
+				fos.write(temp, 0, i);
+			}
+			fos.close();
+			is.close();
+			copyIsFinish = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return copyIsFinish;
 	}
 }
