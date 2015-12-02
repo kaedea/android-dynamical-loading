@@ -1,0 +1,3 @@
+include ':plugLoadMgr', ':dexmakersample'
+include ':plugLoadDemo'
+include ':testapk'

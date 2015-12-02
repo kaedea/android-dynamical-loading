@@ -1,3 +1,0 @@
-include ':plugLoadMgr'
-include ':plugLoadDemo'
-include ':testapk'
