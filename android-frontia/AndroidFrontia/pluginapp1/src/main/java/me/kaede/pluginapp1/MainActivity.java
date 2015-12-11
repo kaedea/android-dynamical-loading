@@ -1,8 +1,7 @@
 package me.kaede.pluginapp1;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import com.yy.mobile.ylink.dynamicload.DLBasePluginActivity;
+import com.yy.mobile.core.ylink.dynamicload.DLBasePluginActivity;
 
 public class MainActivity extends DLBasePluginActivity {
 
