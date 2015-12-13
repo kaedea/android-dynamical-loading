@@ -63,5 +63,6 @@
  2. 自定义ClassLoader并偷梁换柱替换想要加载的类；
  3. 动态创建Activity模式开源项目“android-pluginmgr”
 
- ## Frontia
- 代理Activity模式的动态加载框架，基于dynamic-load-apk项目开发，主要注重于“插件管理”和“插件与主项目通讯”的功能，目前正在开发中。
+
+## Frontia
+代理Activity模式的动态加载框架，基于dynamic-load-apk项目开发，主要注重于“插件管理”和“插件与主项目通讯”的功能，目前正在开发中。
