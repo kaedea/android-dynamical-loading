@@ -7,11 +7,11 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="me.kaede.mainapp.MainActivity">
+        android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <TextView
-            android:text="Hello World!"
-            android:layout_width="wrap_content"
+    <Button
+            android:onClick="onClickLivePlugin"
+            android:text="Live Plugin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 </RelativeLayout>

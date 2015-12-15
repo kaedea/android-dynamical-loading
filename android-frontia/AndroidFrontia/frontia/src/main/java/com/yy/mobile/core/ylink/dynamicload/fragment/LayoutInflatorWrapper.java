@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 /**
- * Created by estel on 2015/12/11.
+ * Created by kaede on 2015/12/11.
  */
 public class LayoutInflatorWrapper extends LayoutInflater {
 

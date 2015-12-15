@@ -33,6 +33,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.yy.mobile.core.ylink.dynamicload.*;
 import com.yy.mobile.core.ylink.dynamicload.fragment.DLBasePluginFragment;
+import com.yy.mobile.core.ylink.dynamicload.fragment.PluginContextWrapper;
 import com.yy.mobile.core.ylink.utils.DLConstants;
 import com.yy.mobile.core.ylink.utils.SoLibManager;
 import dalvik.system.DexClassLoader;
@@ -350,7 +351,8 @@ public class DLPluginManager {
 
     }
 
-    public Fragment getPluginFragment (DLIntent dlIntent){
+
+    public Fragment getPluginFragment (Context context,DLIntent dlIntent){
         if (mFrom == DLConstants.FROM_INTERNAL) {
             return null;
         }
@@ -373,8 +375,9 @@ public class DLPluginManager {
 
         try {
             Method method = clazz.getMethod("getComponent");
-            Fragment fragment = (Fragment) method.invoke(null);
-            return fragment;
+            DLBasePluginFragment fragment = (DLBasePluginFragment) method.invoke(null);
+            PluginContextWrapper pluginContext = new PluginContextWrapper(context).attatchPluginPackage(pluginPackage);
+            return fragment.attachPluginContext(pluginContext);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
