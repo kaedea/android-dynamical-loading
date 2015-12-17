@@ -1,17 +1,22 @@
 package me.kaede.mainapp;
 
 import android.content.pm.PackageInfo;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import com.yy.mobile.ylink.dynamicload.core.DLIntent;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginManager;
+import com.yy.mobile.ylink.dynamicload.core.DLPluginPackage;
 import com.yy.mobile.ylink.utils.DLUtils;
 
 import java.io.File;
 
-public class LivePluginActivity extends FragmentActivity {
+public class LivePluginActivity2 extends FragmentActivity {
+
+	private DLPluginPackage pluginPackage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class LivePluginActivity extends FragmentActivity {
 			return;
 		}
 
-		PluginItem pluginItem = new PluginItem();
+		LivePluginActivity.PluginItem pluginItem = new LivePluginActivity.PluginItem();
 		pluginItem.pluginPath = tempFile.getAbsolutePath();
 		pluginItem.packageInfo = DLUtils.getPackageInfo(this, pluginItem.pluginPath);
 		if (pluginItem.packageInfo.activities != null && pluginItem.packageInfo.activities.length > 0) {
@@ -45,19 +50,35 @@ public class LivePluginActivity extends FragmentActivity {
         intent.putExtra("subsid",(int)itemData.ssid);*/
 		Fragment pluginFragment = DLPluginManager.getInstance(this).getPluginFragment(this,intent);
 		if (pluginFragment!=null){
+			pluginPackage = DLPluginManager.getInstance(this).getCurrentPluginPackage();
 			getSupportFragmentManager().beginTransaction().add(R.id.container, pluginFragment).commitAllowingStateLoss();
 		}
 
 	}
 
-	public static class PluginItem {
-		public PackageInfo packageInfo;
-		public String pluginPath;
-		public String launcherActivityName;
-		public String launcherServiceName;
-
-		public PluginItem() {
+	@Override
+	public Resources getResources() {
+		if (pluginPackage == null) {
+			return super.getResources();
 		}
+		return pluginPackage.resources;
 	}
+
+	@Override
+	public AssetManager getAssets() {
+		if (pluginPackage == null) {
+			return super.getAssets();
+		}
+		return pluginPackage.assetManager;
+	}
+
+	@Override
+	public ClassLoader getClassLoader() {
+		if (pluginPackage == null) {
+			return super.getClassLoader();
+		}
+		return pluginPackage.classLoader;
+	}
+
 
 }

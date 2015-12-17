@@ -2,7 +2,7 @@ package me.kaede.mainapp.bridge;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import com.yy.mobile.core.ylink.bridge.coreapi.UserInfoApi;
+import com.yy.mobile.ylink.bridge.coreapi.UserInfoApi;
 import me.kaede.mainapp.component.YLUserInfoFragment;
 
 /**

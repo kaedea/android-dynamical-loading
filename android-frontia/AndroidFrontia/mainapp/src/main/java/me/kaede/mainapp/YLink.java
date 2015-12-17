@@ -1,9 +1,9 @@
 package me.kaede.mainapp;
 
-import com.yy.mobile.core.ylink.bridge.CoreApiManager;
-import com.yy.mobile.core.ylink.bridge.coreapi.BaseApi;
-import com.yy.mobile.core.ylink.bridge.coreapi.LoginApi;
-import com.yy.mobile.core.ylink.bridge.coreapi.UserInfoApi;
+import com.yy.mobile.ylink.bridge.CoreApiManager;
+import com.yy.mobile.ylink.bridge.coreapi.BaseApi;
+import com.yy.mobile.ylink.bridge.coreapi.LoginApi;
+import com.yy.mobile.ylink.bridge.coreapi.UserInfoApi;
 import me.kaede.mainapp.bridge.LoginApiImpl;
 import me.kaede.mainapp.bridge.UserInfoApiImpl;
 

@@ -11,12 +11,11 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		YLink.init();
 	}
 
 	public void onClickLivePlugin(View view){
-		Intent intent = new Intent(this, LivePluginActivity.class);
+		Intent intent = new Intent(this, LivePluginActivity2.class);
 		startActivity(intent);
 	}
 }

@@ -1,8 +1,8 @@
 package me.kaede.mainapp.bridge;
 
 import android.content.Context;
-import com.yy.mobile.core.ylink.bridge.CoreApiManager;
-import com.yy.mobile.core.ylink.bridge.coreapi.LoginApi;
+import com.yy.mobile.ylink.bridge.CoreApiManager;
+import com.yy.mobile.ylink.bridge.coreapi.LoginApi;
 
 /**
  * Created by kaede on 2015/12/7.

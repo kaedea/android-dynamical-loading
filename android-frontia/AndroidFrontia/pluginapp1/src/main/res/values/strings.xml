@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidFrontiaPluginApp</string>
+    <string name="main_btn1">Button 1</string>
+    <string name="main_btn2">Button 2</string>
 </resources>

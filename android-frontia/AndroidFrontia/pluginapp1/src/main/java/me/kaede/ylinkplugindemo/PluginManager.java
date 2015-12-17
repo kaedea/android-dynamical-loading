@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
  */
 public class PluginManager {
 	public static Fragment getComponent(){
-		MainFragment fragment= MainFragment.newInstance();
-		return MainFragment.newInstance();
+		//MainFragment fragment= MainFragment.newInstance();
+		return MainFragment2.newInstance();
 	}
 }

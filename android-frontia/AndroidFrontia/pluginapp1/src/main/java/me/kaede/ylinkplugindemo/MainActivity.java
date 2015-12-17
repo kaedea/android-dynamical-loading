@@ -6,10 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.yy.mobile.core.ylink.bridge.CoreApiManager;
-import com.yy.mobile.core.ylink.bridge.coreapi.LoginApi;
-import com.yy.mobile.core.ylink.bridge.coreapi.UserInfoApi;
-import com.yy.mobile.core.ylink.dynamicload.DLBasePluginFragmentActivity;
+
+import com.yy.mobile.ylink.bridge.CoreApiManager;
+import com.yy.mobile.ylink.bridge.coreapi.LoginApi;
+import com.yy.mobile.ylink.bridge.coreapi.UserInfoApi;
+import com.yy.mobile.ylink.dynamicload.DLBasePluginFragmentActivity;
 import me.kaede.pluginapp1.R;
 
 public class MainActivity extends DLBasePluginFragmentActivity implements View.OnClickListener {

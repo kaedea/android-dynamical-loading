@@ -33,6 +33,25 @@
                  android:label="@string/app_name"
                  android:supportsRtl="true"
             >
+        <activity
+                android:name=".ylink.dynamicload.DLProxyActivity"
+                android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.yy.mobile.ylink.dynamicload.proxy.activity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ylink.dynamicload.DLProxyFragmentActivity"
+                android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.yy.mobile.ylink.dynamicload.proxy.fragmentactivity.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <service android:name=".ylink.dynamicload.DLProxyService"/>
 
     </application>
 

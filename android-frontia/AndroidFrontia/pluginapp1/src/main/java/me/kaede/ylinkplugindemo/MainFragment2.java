@@ -14,9 +14,9 @@ import me.kaede.pluginapp1.R;
 /**
  * Created by kaede on 2015/12/11.
  */
-public class MainFragment extends DLBasePluginFragment implements View.OnClickListener {
-	public static MainFragment newInstance(){
-		return  new MainFragment();
+public class MainFragment2 extends DLBasePluginFragment implements View.OnClickListener {
+	public static MainFragment2 newInstance(){
+		return  new MainFragment2();
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class MainFragment extends DLBasePluginFragment implements View.OnClickLi
 		View view = null;
 		try {
 			LayoutInflater layoutInflater = new LayoutInflatorWrapper(inflater,pluginContext);
-			view = layoutInflater.inflate(R.layout.activity_plugin_main, null);
+			view = inflater.inflate(R.layout.activity_plugin_main, null);
 			view.findViewById(R.id.btn_islogin).setOnClickListener(this);
 			view.findViewById(R.id.btn_goToLogin).setOnClickListener(this);
 			//view.findViewById(R.id.layout_userinfo).setOnClickListener(this);

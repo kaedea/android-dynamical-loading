@@ -17,8 +17,11 @@
         </activity>
         <activity
                 android:name=".LivePluginActivity"
-                android:label="@string/title_activity_live_plugin"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:label="@string/title_activity_live_plugin">
+        </activity>
+        <activity
+                android:name=".LivePluginActivity2"
+                android:label="@string/title_activity_live_plugin">
         </activity>
     </application>
 

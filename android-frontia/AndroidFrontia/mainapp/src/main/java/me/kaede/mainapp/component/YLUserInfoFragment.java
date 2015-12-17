@@ -27,7 +27,7 @@ public class YLUserInfoFragment extends Fragment implements View.OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = null;
 		try {
-			view = inflater.inflate(R.layout.fragment_userinfo,container,false);
+			view = inflater.inflate(R.layout.fragment_userinfo,null);
 			view.findViewById(R.id.btn).setOnClickListener(this);
 		} catch (Exception e) {
 			e.printStackTrace();

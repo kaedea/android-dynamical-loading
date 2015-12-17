@@ -2,20 +2,18 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
         <Button
                 android:layout_marginTop="10dp"
-                android:text="isLogin"
+                android:text="@string/main_btn1"
                 android:id="@+id/btn_islogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         <Button
                 android:layout_marginTop="5dp"
-                android:text="goToLogin"
+                android:text="@string/main_btn2"
                 android:id="@+id/btn_goToLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
