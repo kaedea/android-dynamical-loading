@@ -23,7 +23,7 @@ public class MainFragment extends DLBasePluginFragment implements View.OnClickLi
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = null;
 		try {
-			LayoutInflater layoutInflater = new LayoutInflatorWrapper(inflater,pluginContext);
+			LayoutInflater layoutInflater = inflater.cloneInContext(pluginContext);
 			view = layoutInflater.inflate(R.layout.activity_plugin_main, null);
 			view.findViewById(R.id.btn_islogin).setOnClickListener(this);
 			view.findViewById(R.id.btn_goToLogin).setOnClickListener(this);
@@ -38,7 +38,7 @@ public class MainFragment extends DLBasePluginFragment implements View.OnClickLi
 	public void onClick(View v) {
 		switch(v.getId()) {
 		case R.id.btn_islogin:
-			Toast.makeText(getActivity(),pluginContext.getResources().getString(R.string.app_name),Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(),pluginContext.getResources().getString(R.string.main_btn2),Toast.LENGTH_LONG).show();
 		    break;
 		case R.id.btn_goToLogin:
 			//Toast.makeText(getActivity(),"btn_goToLogin",Toast.LENGTH_LONG).show();

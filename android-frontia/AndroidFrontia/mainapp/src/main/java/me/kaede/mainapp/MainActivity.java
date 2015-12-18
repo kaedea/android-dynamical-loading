@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onClickLivePlugin(View view){
-		Intent intent = new Intent(this, LivePluginActivity2.class);
+		Intent intent = new Intent(this, LivePluginActivity.class);
 		startActivity(intent);
 	}
 }
