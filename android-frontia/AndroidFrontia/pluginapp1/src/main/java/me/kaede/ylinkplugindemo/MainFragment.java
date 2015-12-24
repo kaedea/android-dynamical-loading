@@ -1,5 +1,6 @@
 package me.kaede.ylinkplugindemo;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.widget.Toast;
 import com.yy.mobile.ylink.bridge.CoreApiManager;
 import com.yy.mobile.ylink.bridge.coreapi.UserInfoApi;
 import com.yy.mobile.ylink.dynamicload.fragment.DLBasePluginFragment;
-import com.yy.mobile.ylink.dynamicload.fragment.LayoutInflatorWrapper;
 import me.kaede.pluginapp1.R;
 
 /**
@@ -23,7 +23,8 @@ public class MainFragment extends DLBasePluginFragment implements View.OnClickLi
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = null;
 		try {
-			LayoutInflater layoutInflater = inflater.cloneInContext(pluginContext);
+			//LayoutInflater layoutInflater = new LayoutInflatorWrapper(inflater,pluginContext);
+			LayoutInflater layoutInflater = LayoutInflater.from(getActivity().getBaseContext()).cloneInContext(pluginContext);
 			view = layoutInflater.inflate(R.layout.activity_plugin_main, null);
 			view.findViewById(R.id.btn_islogin).setOnClickListener(this);
 			view.findViewById(R.id.btn_goToLogin).setOnClickListener(this);

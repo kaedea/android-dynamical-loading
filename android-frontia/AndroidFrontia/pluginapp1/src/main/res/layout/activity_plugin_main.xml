@@ -4,26 +4,34 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-                android:layout_marginTop="10dp"
-                android:text="@string/main_btn1"
-                android:id="@+id/btn_islogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+    <Button
+            android:background="#2196F3"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/main_btn1"
+            android:id="@+id/btn_islogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <Button
-                android:layout_marginTop="5dp"
-                android:text="@string/main_btn2"
-                android:id="@+id/btn_goToLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+    <Button
+            android:background="#2196F3"
+            android:layout_marginRight="@dimen/activity_vertical_margin"
+            android:layout_marginTop="5dp"
+            android:text="@string/main_btn2"
+            android:id="@+id/btn_goToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-        <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/layout_userinfo"
-                android:background="#ddd"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/layout_userinfo"
+            android:background="#2196F3"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:background="@color/background"
+              android:text="@string/main_text1"/>
 </LinearLayout>

@@ -356,7 +356,7 @@ public class DLPluginManager {
         return pluginPackageCurrent;
     }
 
-    public Fragment getPluginFragment (Context context,DLIntent dlIntent){
+    public Fragment getPluginFragment (Activity activity,DLIntent dlIntent){
         if (mFrom == DLConstants.FROM_INTERNAL) {
             return null;
         }
@@ -380,7 +380,7 @@ public class DLPluginManager {
         try {
             Method method = clazz.getMethod("getComponent");
             DLBasePluginFragment fragment = (DLBasePluginFragment) method.invoke(null);
-            PluginContextWrapper pluginContext = new PluginContextWrapper(context).attatchPluginPackage(pluginPackageCurrent);
+            PluginContextWrapper pluginContext = new PluginContextWrapper(activity).attatchPluginPackage(pluginPackageCurrent);
             return fragment.attachPluginContext(pluginContext);
         } catch (Exception e) {
             e.printStackTrace();

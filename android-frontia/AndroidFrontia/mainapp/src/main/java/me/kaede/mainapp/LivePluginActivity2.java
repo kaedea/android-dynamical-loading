@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import com.yy.mobile.ylink.dynamicload.core.DLIntent;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginManager;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginPackage;
@@ -78,6 +79,19 @@ public class LivePluginActivity2 extends FragmentActivity {
 			return super.getClassLoader();
 		}
 		return pluginPackage.classLoader;
+	}
+
+
+	LayoutInflater mInflater;
+	@Override
+	public Object getSystemService(String name) {
+		if (LAYOUT_INFLATER_SERVICE.equals(name)) {
+			if (mInflater == null) {
+				mInflater = LayoutInflater.from(getBaseContext()).cloneInContext(this);
+			}
+			return mInflater;
+		}
+		return getBaseContext().getSystemService(name);
 	}
 
 
