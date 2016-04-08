@@ -20,6 +20,25 @@ public class BasePluginPackage {
 	public String internalSoLibDir;
 	public boolean hasLoadedSoLib;
 	public String md5;
-	
+
 	public PackageInfo packageInfo;
+
+	public BasePluginPackage(String packageName) {
+		this.packageName = packageName;
+	}
+
+	@Override
+	public String toString() {
+		return "BasePluginPackage{" +
+				"packageName='" + packageName + '\'' +
+				'}';
+	}
+
+	public BasePluginPackage loadPlugin(String packagePath) {
+		return null;
+	}
+
+	public boolean checkPluginValid(){
+		return false;
+	}
 }
