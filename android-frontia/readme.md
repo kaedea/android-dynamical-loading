@@ -7,4 +7,7 @@ Android-Frontia是一个Android的插件化框架（基于ClassLoader的动态�
 - 插件版本控制和插件安全性校验；
 - 提供插件调用宿主APP API的Bridge接口；
 
+## 简单UML示意图
+![](http://i3.piimg.com/e2657ce56fd290ff.png)
+
 绝赞开发中 \_(-ω-\`\_)⌒)\_
