@@ -28,7 +28,7 @@ public abstract class BasePluginHandler implements IPluginHandler {
 		if (packageInfo == null) {
 			return -1;
 		}
-		BasePluginPackage basePluginPackage = PluginPackageFactory.createSimplePluginPackage(packageInfo.packageName, pluginPath);
+		BasePluginPackage basePluginPackage = PluginPackageFactory.createSimplePluginPackage(context, packageInfo.packageName, pluginPath);
 		packageHolder.put(packageInfo.packageName, basePluginPackage);
 		return 0;
 	}
