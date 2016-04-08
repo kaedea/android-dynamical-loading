@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="moe.studio.frontia">
+
+    <application>
+        <activity
+            android:name="moe.studio.frontia.StubActivity">
+            <meta-data
+                android:name="FRONTIA"
+                android:value="400"
+                tools:node="merge"/>
+        </activity>
+    </application>
+
+</manifest>

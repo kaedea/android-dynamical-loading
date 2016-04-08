@@ -1,0 +1,86 @@
+/*
+ * Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "moe.studio.plugin.stackblur"
+        multiDexEnabled false
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    afterEvaluate {
+        android.applicationVariants.all { variant ->
+            if (variant.buildType.name.equals("release")) {
+                variant.outputs.each { output ->
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                        // Rename APK
+                        /*def applicationId = 'tmedia'
+                        def versionCode = defaultConfig.versionCode
+                        def versionName = defaultConfig.versionName
+                        def date = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())
+                        def newName = "${applicationId}_r${versionCode}_v${versionName}_${date}.so"*/
+                        def applicationId = 'stackblur'
+                        def newName = "${applicationId}.apk"
+                        // Move and Rename APK
+                        def task = project.tasks.create("frontiaCopy${variant.name.capitalize()}StackBlur", Copy)
+                        task.from(output.outputFile)
+                        task.rename(output.outputFile.name, newName)
+                        task.into(project(':app-demo').projectDir.absolutePath + '/src/main/assets/')
+                        task.dependsOn variant.assemble
+                        // Move ProGuard
+                        /*if (variant.buildType.runProguard) {
+                            def copyTask = project.tasks.create("copy${variant.name.capitalize()}MappingText", Copy)
+                            def buildTypeName = variant.buildType.name
+                            copyTask.from(file("build/outputs/proguard/${buildTypeName}").path)
+                            copyTask.into(file("${variant.name}/proguard").getAbsolutePath())
+                            copyTask.dependsOn variant.assemble
+                            task.dependsOn copyTask
+                        }*/
+                        def publish = project.tasks.create("frontiaPublishStackBlur")
+                        publish.dependsOn task
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    compile project(path: ':frontia-tools')
+
+    def frontia = new File(project(':frontia').getBuildDir().absolutePath
+            + '/intermediates/bundles/debug/classes.jar')
+    if (frontia.exists()) {
+        provided files(frontia)
+    } else {
+        compile project(path: ':frontia')
+    }
+
+    def behavior = new File(project(':stackblur-behaviour').getBuildDir().absolutePath
+            + '/intermediates/bundles/debug/classes.jar')
+    if (behavior.exists()) {
+        provided files(behavior)
+    } else {
+        compile project(path: ':stackblur-behaviour')
+    }
+}

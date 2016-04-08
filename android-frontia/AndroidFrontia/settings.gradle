@@ -1,1 +1,0 @@
-include ':mainapp', ':frontia', ':pluginapp1'

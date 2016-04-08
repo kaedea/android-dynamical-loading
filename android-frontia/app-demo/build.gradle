@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+ */
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId APPLICATION_PACKAGE
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86', 'armeabi'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'lib/armeabi/libimagepipeline.so'
+        exclude 'lib/armeabi-v7a/libimagepipeline.so'
+        exclude 'lib/x86/libimagepipeline.so'
+    }
+}
+
+project.afterEvaluate {
+    // 构建 Main APP 前，先构建插件并复制到 Main APP 的 ASSETS 下
+    // preBuild.dependsOn ':video-plugin:frontiaPublishVideoPlugin'
+    preBuild.dependsOn ':stackblur:frontiaPublishStackBlur'
+    preBuild.dependsOn ':fresco:frontiaPublishFresco'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Frontia
+    debugCompile project(path: ':frontia', configuration: 'debug')
+    releaseCompile project(path: ':frontia', configuration: 'release')
+
+    // Plugin
+    compile project(':stackblur-behaviour')
+
+    // App Library
+    compile('com.facebook.fresco:fresco:0.14.1') {
+        exclude group: 'com.android.support'
+    }
+    compile 'com.android.support:design:23.4.0'
+}

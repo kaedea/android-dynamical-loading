@@ -1,0 +1,23 @@
+/*
+ * Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+ */
+
+ // Frontia
+ include ':frontia'
+ project(':frontia').projectDir = file("frontia")
+ include ':frontia-tools'
+ project(':frontia-tools').projectDir = file("frontia-tools")
+
+ // Demo App
+ include ':app-demo'
+ project(':app-demo').projectDir = file("app-demo")
+
+ // StackBlur Plugin
+ include ':stackblur-behaviour'
+ project(':stackblur-behaviour').projectDir = file("plugin-stackblur/behaviour")
+ include(':stackblur')
+ project(':stackblur').projectDir = file("plugin-stackblur/stackblur")
+
+ // Fresco Plugin
+ include(':fresco')
+ project(':fresco').projectDir = file("plugin-fresco/package")

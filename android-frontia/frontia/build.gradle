@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+ */
+
+apply plugin: 'com.android.library'
+
+ext {
+    frontiaVersion = Integer.parseInt(VERSION_CODE)
+    frontiaDependencyPrefix = FRONTIA_DEPENDENCY_PREFIX
+    frontiaDependencySuffix = FRONTIA_DEPENDENCY_SUFFIX
+    frontiaName = frontiaDependencyPrefix + FRONTIA_CORE_NAME + frontiaDependencySuffix
+}
+
+android {
+    publishNonDefault true
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'NAME', "\"${FRONTIA_CORE_NAME}\""
+        buildConfigField 'String', 'PREFIX', "\"${FRONTIA_DEPENDENCY_PREFIX}\""
+        buildConfigField 'String', 'SUFFIX', "\"${FRONTIA_DEPENDENCY_SUFFIX}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+}
+
+dependencies {
+    compile 'moe.studio:downloader:0.1.1'
+    compile 'commons-io:commons-io:2.5'
+
+    // Test
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}

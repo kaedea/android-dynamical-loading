@@ -1,0 +1,28 @@
+/*
+ * Copyright (c) 2016 Kaede Akatsuki (kidhaibara@gmail.com)
+ */
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+//        manifestPlaceholders = [ frontiaName:project(':frontia').ext.frontiaName,
+//                                 frontiaVersion:project(':frontia').ext.frontiaVersion]
+    }
+}
+
+dependencies {
+    def frontia = new File(project(':frontia').getBuildDir().absolutePath
+            + '/intermediates/bundles/debug/classes.jar')
+    if (frontia.exists()) {
+        provided files(frontia)
+    } else {
+        compile project(path: ':frontia')
+    }
+}
