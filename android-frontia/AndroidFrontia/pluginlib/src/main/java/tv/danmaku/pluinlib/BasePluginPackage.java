@@ -28,6 +28,10 @@ public abstract class BasePluginPackage {
 		this.packageName = packageName;
 	}
 
+	public BasePluginPackage(PackageInfo packageInfo){
+		this.packageInfo = packageInfo;
+	}
+
 	@Override
 	public String toString() {
 		return "BasePluginPackage{" +

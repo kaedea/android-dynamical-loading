@@ -14,6 +14,9 @@ public class SimplePluginPackage extends BasePluginPackage {
 
 	@Override
 	public BasePluginPackage loadPlugin(Context context, String packagePath) {
+		/*if (this.packageInfo==null){
+			this.packageInfo = ApkHelper.getPackageInfo(context,packagePath);
+		}*/
 		this.classLoader = ApkHelper.createDexClassLoader(context, packagePath, internalSoLibDir);
 		this.assetManager = ApkHelper.createAssetManager(packagePath);
 		this.resources = ApkHelper.createResources(context, this.assetManager);
