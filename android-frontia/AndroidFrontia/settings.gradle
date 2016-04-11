@@ -1,1 +1,1 @@
-include ':mainapp', ':frontia', ':pluginapp1', ':pluginlib'
+include ':mainapp', ':frontia', ':pluginapp1', ':pluginlib', ':pluginbehaiour'

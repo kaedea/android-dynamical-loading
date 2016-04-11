@@ -5,7 +5,7 @@ package tv.danmaku.pluinlib;
  * Created by user on 2016/4/8.
  */
 public interface IPluginHandler {
-	public int initPlugin(String pluginPath);
+	public BasePluginPackage initPlugin(String pluginPath);
 
 	public BasePluginPackage getPluginPackage(String packageName);
 
