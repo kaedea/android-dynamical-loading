@@ -11,8 +11,9 @@ import java.util.Map;
  * Copyright (c) 2016 BiliBili Inc.
  * Created by kaede on 2016/4/8.
  */
-public abstract class BasePluginHandler implements IPluginHandler {
+public class BasePluginHandler implements IPluginHandler {
 
+	public static final String TAG = "BasePluginHandler";
 	Context context;
 	Map<String, BasePluginPackage> packageHolder;
 
@@ -26,6 +27,7 @@ public abstract class BasePluginHandler implements IPluginHandler {
 		PackageInfo packageInfo = context.getPackageManager().getPackageArchiveInfo(pluginPath,
 				PackageManager.GET_ACTIVITIES | PackageManager.GET_SERVICES);
 		if (packageInfo == null) {
+			LogUtil.w(TAG,"packageInfo = null");
 			return -1;
 		}
 		BasePluginPackage basePluginPackage = PluginPackageFactory.createSimplePluginPackage(context, packageInfo.packageName, pluginPath);
