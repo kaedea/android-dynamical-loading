@@ -40,17 +40,7 @@ public abstract class BasePluginHandler implements IPluginHandler {
 
 	@Override
 	public Class loadPluginClass(BasePluginPackage basePluginPackage, String className) {
-		return loadPluginClass(basePluginPackage.classLoader, className);
+		return ApkHelper.loadPluginClass(basePluginPackage.classLoader, className);
 	}
 
-	private Class<?> loadPluginClass(ClassLoader classLoader, String className) {
-		Class<?> clazz = null;
-		try {
-			clazz = Class.forName(className, true, classLoader);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return clazz;
-	}
 }
