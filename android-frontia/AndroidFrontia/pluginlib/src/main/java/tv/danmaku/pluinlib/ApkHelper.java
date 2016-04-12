@@ -22,7 +22,8 @@ public class ApkHelper {
 		LogUtil.i(TAG,"createDexClassLoader");
 		File dexOutputDir = context.getDir("dex", Context.MODE_PRIVATE);
 		String dexOutputPath = dexOutputDir.getAbsolutePath();
-		return new DexClassLoader(dexPath, dexOutputPath, internalSoLibDir, context.getClassLoader());
+		ClassLoader parentClassLoader = ApkHelper.class.getClassLoader(); //这里使用ApkHelper的CLassLoader作为插件的父ClassLoader，说明插件并非独立运行，可以和宿主有公共库；
+		return new DexClassLoader(dexPath, dexOutputPath, internalSoLibDir, parentClassLoader);
 	}
 
 	public static AssetManager createAssetManager(String dexPath) {

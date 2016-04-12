@@ -2,7 +2,9 @@ package tv.danmaku.pluinlib;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.text.TextUtils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,11 +25,26 @@ public class BasePluginHandler implements IPluginHandler {
 
 	@Override
 	public BasePluginPackage initPlugin(String pluginPath) {
-		PackageInfo packageInfo = ApkHelper.getPackageInfo(context,pluginPath);
+		if (TextUtils.isEmpty(pluginPath) || !new File(pluginPath).exists()) {
+			LogUtil.e(TAG, "pluginPath not exist!");
+			return null;
+		}
+
+		if (!pluginPath.startsWith(context.getCacheDir().getAbsolutePath())) {
+			String tempFilePath = context.getCacheDir().getAbsolutePath() + File.separator + System.currentTimeMillis() + ".apk";
+			if (FileUtil.copyFile(pluginPath, tempFilePath)) {
+				pluginPath = tempFilePath;
+			} else {
+				LogUtil.e(TAG, "复制插件文件失败:" + pluginPath + " " + tempFilePath);
+				return null;
+			}
+		}
+
+		PackageInfo packageInfo = ApkHelper.getPackageInfo(context, pluginPath);
 		/*PackageInfo packageInfo = context.getPackageManager().getPackageArchiveInfo(pluginPath,
 				PackageManager.GET_ACTIVITIES | PackageManager.GET_SERVICES);*/
 		if (packageInfo == null) {
-			LogUtil.w(TAG,"packageInfo = null");
+			LogUtil.e(TAG, "packageInfo = null");
 			return null;
 		}
 		BasePluginPackage basePluginPackage = PluginPackageFactory.createSimplePluginPackage(context, packageInfo.packageName, pluginPath);
