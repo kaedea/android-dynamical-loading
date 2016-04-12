@@ -98,3 +98,5 @@
 - [携程网 DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
 - [女娲 Nuwa](https://github.com/jasonross/Nuwa)
 - [Android-Plugin-Framework](https://github.com/limpoxe/Android-Plugin-Framework)
+- [Small](https://github.com/wequick/Small)
+- [android-dynamic-load-awesome](https://github.com/liaohuqiu/android-dynamic-load-awesome)
