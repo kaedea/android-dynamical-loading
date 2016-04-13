@@ -12,6 +12,7 @@ import com.yy.mobile.ylink.dynamicload.core.DLIntent;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginManager;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginPackage;
 import com.yy.mobile.ylink.utils.DLUtils;
+import edu.gemini.tinyplayer.R;
 
 import java.io.File;
 

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import com.yy.mobile.ylink.dynamicload.core.DLIntent;
 import com.yy.mobile.ylink.dynamicload.core.DLPluginManager;
 import com.yy.mobile.ylink.utils.DLUtils;
+import edu.gemini.tinyplayer.R;
 
 import java.io.File;
 

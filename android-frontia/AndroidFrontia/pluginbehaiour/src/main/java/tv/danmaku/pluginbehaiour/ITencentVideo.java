@@ -8,7 +8,7 @@ import android.view.View;
  * Created by kaede on 2016/4/8.
  */
 public interface ITencentVideo {
-	public void onCreate(Context context);
+	public void onCreate();
 	public View getVideoView();
 	public void play(String mVid, int mPlayType);
  }

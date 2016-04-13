@@ -1,5 +1,6 @@
 package me.kaede.pluginpackage;
 
+import android.app.Activity;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
 
@@ -16,8 +17,8 @@ public class Entry {
 		return new ToastImpl();
 	}
 
-	public static ITencentVideo getTencentVideo(){
-		ITencentVideo iTencentVideo = new TencentVideoImpl();
+	public static ITencentVideo getTencentVideo(Activity activity){
+		ITencentVideo iTencentVideo = new TencentVideoImpl(activity);
 		iTencentVideo.onCreate();
 		return iTencentVideo;
 	}

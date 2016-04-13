@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.kaede.mainapp">
+          package="edu.gemini.tinyplayer">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -32,7 +32,7 @@
                 android:name="TA_APPKEY"
                 android:value="AES1V77ZTU79" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="me.kaede.mainapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -40,11 +40,11 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".LivePluginActivity"
+                android:name="me.kaede.mainapp.LivePluginActivity"
                 android:label="@string/title_activity_live_plugin">
         </activity>
         <activity
-                android:name=".LivePluginActivity2"
+                android:name="me.kaede.mainapp.LivePluginActivity2"
                 android:label="@string/title_activity_live_plugin">
         </activity>
     </application>
