@@ -18,7 +18,7 @@ import java.util.zip.ZipFile;
  */
 public class FileUtil {
 	public static final String TAG = "FileUtil";
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 
 	public static boolean copyFile(String source, String dest) {
 		try {
