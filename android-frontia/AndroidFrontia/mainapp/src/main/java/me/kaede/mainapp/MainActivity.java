@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
 			ITencentVideo iTencentVideo = (ITencentVideo) method.invoke(null, this);
 			LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.player);
 			linearLayout.addView(iTencentVideo.getVideoView(), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-			iTencentVideo.play("r0016w5wxcw", 2);
+			iTencentVideo.play("a0012p8g8cr", 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

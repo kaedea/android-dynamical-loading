@@ -7,9 +7,16 @@ import android.content.Context;
  * Created by kaede on 2016/4/8.
  */
 public class PluginPackageFactory {
-
+	public static final String TAG = "PluginPackageFactory";
 	public static BasePluginPackage createSimplePluginPackage(Context context, String packageName, String pluginPath) {
 		BasePluginPackage basePluginPackage = new SimplePluginPackage(packageName);
+		basePluginPackage.loadPlugin(context, pluginPath);
+		return basePluginPackage;
+	}
+
+	public static BasePluginPackage createSoLibPluginPackage(Context context, String packageName, String pluginPath) {
+		LogUtil.i(TAG, "[kaede] createSoLibPluginPackage");
+		BasePluginPackage basePluginPackage = new SoLibPluginPackage(packageName);
 		basePluginPackage.loadPlugin(context, pluginPath);
 		return basePluginPackage;
 	}

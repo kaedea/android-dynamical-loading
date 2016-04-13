@@ -47,7 +47,7 @@ public class BasePluginHandler implements IPluginHandler {
 			LogUtil.e(TAG, "packageInfo = null");
 			return null;
 		}
-		BasePluginPackage basePluginPackage = PluginPackageFactory.createSimplePluginPackage(context, packageInfo.packageName, pluginPath);
+		BasePluginPackage basePluginPackage = PluginPackageFactory.createSoLibPluginPackage(context, packageInfo.packageName, pluginPath);
 		packageHolder.put(packageInfo.packageName, basePluginPackage);
 		return basePluginPackage;
 	}
