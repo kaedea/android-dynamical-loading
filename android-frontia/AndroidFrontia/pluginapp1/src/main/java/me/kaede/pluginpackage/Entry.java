@@ -1,5 +1,6 @@
 package me.kaede.pluginpackage;
 
+import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
 
 /**
@@ -14,4 +15,11 @@ public class Entry {
 	public static IToast getToast(){
 		return new ToastImpl();
 	}
+
+	public static ITencentVideo getTencentVideo(){
+		ITencentVideo iTencentVideo = new TencentVideoImpl();
+		iTencentVideo.onCreate();
+		return iTencentVideo;
+	}
+
 }

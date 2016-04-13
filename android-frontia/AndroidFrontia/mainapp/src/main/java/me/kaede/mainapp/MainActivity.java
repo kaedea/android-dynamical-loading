@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.Toast;
 import com.yy.mobile.ylink.dynamicload.fragment.DLBasePluginFragment;
 import com.yy.mobile.ylink.dynamicload.fragment.PluginContextWrapper;
 import tv.danmaku.pluginbehaiour.IToast;
@@ -19,6 +20,8 @@ import java.lang.reflect.Method;
 public class MainActivity extends Activity {
 
 	public static final String TAG = "MainActivity";
+	private BasePluginPackage basePluginPackage;
+	private BasePluginHandler basePluginHandler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +35,24 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	public void onClickSimplePlugin(View view){
+	public void onLoadSimplePlugin(View view){
 		// 测试 SimplePluginPackage
 		File tempFile = new File( Environment.getExternalStorageDirectory() + File.separator + "pluginapp1-debug.apk");
 
 		if (!tempFile.exists()) {
 			LogUtil.w(TAG,"插件不存在");
+			Toast.makeText(this,"插件不存在",Toast.LENGTH_LONG).show();
 			return;
 		}
-		BasePluginHandler basePluginHandler = new BasePluginHandler(this);
-		BasePluginPackage basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
+		basePluginHandler = new BasePluginHandler(this);
+		basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
+		if (basePluginPackage==null){
+			Toast.makeText(this,"加载插件失败",Toast.LENGTH_LONG).show();
+		}
+
+	}
+
+	public void onCallMethod(View view){
 		Class clazz = basePluginHandler.loadPluginClass(basePluginPackage,"me.kaede.pluginpackage.Entry");
 		try {
 			Method method = clazz.getMethod("getToast");
@@ -50,6 +61,5 @@ public class MainActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 }

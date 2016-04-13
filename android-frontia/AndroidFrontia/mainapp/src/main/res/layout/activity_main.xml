@@ -16,8 +16,13 @@
             android:layout_height="wrap_content"/>
 
     <Button
-            android:onClick="onClickSimplePlugin"
-            android:text="Simple Plugin"
+            android:onClick="onLoadSimplePlugin"
+            android:text="加载插件"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <Button
+            android:onClick="onCallMethod"
+            android:text="调用方法"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 </LinearLayout>
