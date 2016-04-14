@@ -27,7 +27,7 @@ public class ApkHelper {
 	}
 
 	public static AssetManager createAssetManager(String dexPath) {
-		LogUtil.i(TAG,"createAssetManager");
+		LogUtil.i(TAG, "createAssetManager");
 		try {
 			AssetManager assetManager = AssetManager.class.newInstance();
 			Method addAssetPath = assetManager.getClass().getMethod("addAssetPath", String.class);
@@ -40,13 +40,13 @@ public class ApkHelper {
 	}
 
 	public static Resources createResources(Context context, AssetManager assetManager) {
-		LogUtil.i(TAG,"createResources");
+		LogUtil.i(TAG, "createResources");
 		Resources superRes = context.getResources();
 		return new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
 	}
 
 	public static Class<?> loadPluginClass(ClassLoader classLoader, String className) {
-		LogUtil.i(TAG,"loadPluginClass");
+		LogUtil.i(TAG, "loadPluginClass");
 		Class<?> clazz = null;
 		try {
 			clazz = Class.forName(className, true, classLoader);
@@ -58,6 +58,7 @@ public class ApkHelper {
 	}
 
 	public static PackageInfo getPackageInfo(Context context, String apkFilepath) {
+		LogUtil.i(TAG, "getPackageInfo");
 		PackageManager pm = context.getPackageManager();
 		PackageInfo pkgInfo = null;
 		try {

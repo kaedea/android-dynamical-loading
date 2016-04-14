@@ -2,7 +2,9 @@ package tv.danmaku.pluinlib.core;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.os.Looper;
 import android.text.TextUtils;
+import tv.danmaku.pluinlib.SoLibPluginPackage;
 import tv.danmaku.pluinlib.util.ApkHelper;
 import tv.danmaku.pluinlib.util.FileUtil;
 import tv.danmaku.pluinlib.util.LogUtil;
@@ -10,6 +12,8 @@ import tv.danmaku.pluinlib.util.LogUtil;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Copyright (c) 2016 BiliBili Inc.
@@ -20,6 +24,8 @@ public class BasePluginManager implements IPluginManager {
 	public static final String TAG = "BasePluginHandler";
 	Context context;
 	Map<String, BasePluginPackage> packageHolder;
+
+	private ExecutorService loadExecutor = Executors.newCachedThreadPool();
 
 	public BasePluginManager(Context context) {
 		this.context = context.getApplicationContext();
@@ -33,26 +39,54 @@ public class BasePluginManager implements IPluginManager {
 			return null;
 		}
 
+		// 1.复制到内部临时路径
 		if (!pluginPath.startsWith(context.getCacheDir().getAbsolutePath())) {
 			String tempFilePath = context.getCacheDir().getAbsolutePath() + File.separator + System.currentTimeMillis() + ".apk";
 			if (FileUtil.copyFile(pluginPath, tempFilePath)) {
 				pluginPath = tempFilePath;
 			} else {
-				LogUtil.e(TAG, "复制插件文件失败:" + pluginPath + " " + tempFilePath);
+				LogUtil.e(TAG, "复制插件文件失败:" + pluginPath + " to " + tempFilePath);
 				return null;
 			}
 		}
 
 		PackageInfo packageInfo = ApkHelper.getPackageInfo(context, pluginPath);
-		/*PackageInfo packageInfo = context.getPackageManager().getPackageArchiveInfo(pluginPath,
-				PackageManager.GET_ACTIVITIES | PackageManager.GET_SERVICES);*/
 		if (packageInfo == null) {
 			LogUtil.e(TAG, "packageInfo = null");
 			return null;
 		}
-		BasePluginPackage basePluginPackage = PluginPackageFactory.createSoLibPluginPackage(context, packageInfo.packageName, pluginPath);
+
+		BasePluginPackage basePluginPackage = getPluginPackage(packageInfo.packageName);
+		if (basePluginPackage != null) return basePluginPackage;
+
+		// 2.签名校验
+		if (!checkPluginValid(pluginPath)){
+			LogUtil.e(TAG, "签名验证失败!");
+			return null;
+		}
+
+		// 3.加载插件
+		basePluginPackage = new SoLibPluginPackage(packageInfo.packageName);
+		basePluginPackage.loadPlugin(context, pluginPath);
 		packageHolder.put(packageInfo.packageName, basePluginPackage);
+
 		return basePluginPackage;
+	}
+
+	public void aysncInitPlugin(final String pluginPath, final OnLoadPluginListener onLoadPluginListener){
+		final android.os.Handler handler  = new android.os.Handler(Looper.myLooper());
+		loadExecutor.execute(new Runnable() {
+			@Override
+			public void run() {
+				final BasePluginPackage basePluginPackage = initPlugin(pluginPath);
+				handler.post(new Runnable() {
+					@Override
+					public void run() {
+						onLoadPluginListener.onFinished(pluginPath, basePluginPackage);
+					}
+				});
+			}
+		});
 	}
 
 	@Override
@@ -64,5 +98,22 @@ public class BasePluginManager implements IPluginManager {
 	public Class loadPluginClass(BasePluginPackage basePluginPackage, String className) {
 		return ApkHelper.loadPluginClass(basePluginPackage.classLoader, className);
 	}
+
+	public boolean checkPluginValid(String pluginPath){
+		return true;
+	}
+
+	public BasePluginPackage createPluginPackage(String pluginPath){
+		BasePluginPackage basePluginPackage = new SoLibPluginPackage();
+		basePluginPackage.loadPlugin(context,pluginPath);
+		return basePluginPackage;
+	}
+
+	public interface OnLoadPluginListener{
+		public void onFinished(String pluginPath,BasePluginPackage basePluginPackage);
+	}
+
+
+
 
 }

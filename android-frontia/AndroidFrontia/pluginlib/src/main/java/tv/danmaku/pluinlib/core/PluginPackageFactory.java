@@ -18,7 +18,7 @@ public class PluginPackageFactory {
 	}
 
 	public static BasePluginPackage createSoLibPluginPackage(Context context, String packageName, String pluginPath) {
-		LogUtil.i(TAG, "[kaede] createSoLibPluginPackage");
+		LogUtil.i(TAG, "createSoLibPluginPackage");
 		BasePluginPackage basePluginPackage = new SoLibPluginPackage(packageName);
 		basePluginPackage.loadPlugin(context, pluginPath);
 		return basePluginPackage;

@@ -79,7 +79,7 @@ public class FileUtil {
 						String name = "lib" + File.separator + abi + File.separator + so;
 						File sourceFile = new File(sourceDir, name);
 						if (sourceFile.exists()) {
-							isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator +  "lib" + File.separator + so);
+							isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator +  Constants.DIR_NATIVE_LIB + File.separator + so);
 							//api21 64位系统的目录可能有些不同
 							//copyFile(sourceFile.getAbsolutePath(), dest + File.separator +  name);
 							break;
@@ -102,7 +102,7 @@ public class FileUtil {
 					}
 				}
 				if (sourceFile.exists()) {
-					isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator + "lib" + File.separator + so);
+					isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator + Constants.DIR_NATIVE_LIB + File.separator + so);
 				}
 			}
 

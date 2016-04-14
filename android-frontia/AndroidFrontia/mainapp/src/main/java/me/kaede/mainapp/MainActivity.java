@@ -60,10 +60,18 @@ public class MainActivity extends Activity {
 			return;
 		}
 		basePluginHandler = new BasePluginManager(this);
-		basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
+		/*basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
 		if (basePluginPackage == null) {
 			Toast.makeText(this, "加载插件失败", Toast.LENGTH_LONG).show();
-		}
+		}*/
+
+		basePluginHandler.aysncInitPlugin(tempFile.getAbsolutePath(), new BasePluginManager.OnLoadPluginListener() {
+			@Override
+			public void onFinished(String pluginPath, BasePluginPackage basePluginPackage) {
+				MainActivity.this.basePluginPackage = basePluginPackage;
+				Toast.makeText(MainActivity.this, "加载成功", Toast.LENGTH_LONG).show();
+			}
+		});
 
 	}
 

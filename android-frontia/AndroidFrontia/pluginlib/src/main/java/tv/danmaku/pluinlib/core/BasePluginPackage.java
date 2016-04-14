@@ -24,6 +24,10 @@ public abstract class BasePluginPackage {
 
 	public PackageInfo packageInfo;
 
+	public BasePluginPackage(){
+
+	}
+
 	public BasePluginPackage(String packageName) {
 		this.packageName = packageName;
 	}

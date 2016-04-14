@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.tencent.qqlive.mediaplayer.api.*;
 import com.tencent.qqlive.mediaplayer.view.TVK_PlayerVideoView;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
-import tv.danmaku.pluinlib.LogUtil;
+import tv.danmaku.pluinlib.util.LogUtil;
 
 /**
  * Copyright (c) 2016 BiliBili Inc.

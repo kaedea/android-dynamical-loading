@@ -2,7 +2,9 @@ package tv.danmaku.pluinlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import dalvik.system.DexClassLoader;
+import tv.danmaku.pluinlib.core.Constants;
 import tv.danmaku.pluinlib.util.ApkHelper;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 import tv.danmaku.pluinlib.util.FileUtil;
@@ -20,8 +22,17 @@ public class SoLibPluginPackage extends BasePluginPackage {
 		super(packageName);
 	}
 
+	public SoLibPluginPackage(PackageInfo packageInfo) {
+		super(packageInfo);
+	}
+
+	public SoLibPluginPackage(){
+
+	}
+
 	@Override
 	public BasePluginPackage loadPlugin(Context context, String packagePath) {
+
 		if (this.packageInfo == null) {
 			this.packageInfo = ApkHelper.getPackageInfo(context, packagePath);
 		}
@@ -31,7 +42,7 @@ public class SoLibPluginPackage extends BasePluginPackage {
 		boolean isCopySuccess = FileUtil.copyFile(packagePath, destApkPath);
 		if (isCopySuccess) {
 			File apkParent = new File(destApkPath).getParentFile();
-			File tempSoDir = new File(apkParent, "temp");
+			File tempSoDir = new File(apkParent, Constants.DIR_TEMP_SO);
 			Set<String> soList = FileUtil.unZipSo(packagePath, tempSoDir);
 			if (soList != null) {
 				for (String soName : soList) {
@@ -40,13 +51,12 @@ public class SoLibPluginPackage extends BasePluginPackage {
 				//删掉临时文件
 				FileUtil.deleteAll(tempSoDir);
 			}
-			FileUtil.deleteAll(new File(apkParent, "dalvik-cache"));
+			FileUtil.deleteAll(new File(apkParent, Constants.DIR_DALVIK_CACHE));
 
 			this.classLoader = createClassLoader(destApkPath, context.getClassLoader());
 			this.assetManager = ApkHelper.createAssetManager(destApkPath);
 			this.resources = ApkHelper.createResources(context, this.assetManager);
 		}
-
 
 		return this;
 	}
@@ -63,21 +73,21 @@ public class SoLibPluginPackage extends BasePluginPackage {
 	/**
 	 * 插件的安装目录, 插件apk将来会被放在这个目录下面
 	 */
-	private String genInstallPath(Context context, String pluginId, String pluginVersoin) {
-		return getPluginRootDir(context) + "/" + pluginId + "/" + pluginVersoin + "/base-1.apk";
+	private String genInstallPath(Context context, String pluginId, String pluginVersion) {
+		return getPluginRootDir(context) + "/" + pluginId + "/" + pluginVersion + "/base-1.apk";
 	}
 
 	private String getPluginRootDir(Context context) {
-		return context.getDir("plugin_dir", Context.MODE_PRIVATE).getAbsolutePath();
+		return context.getDir(Constants.DIR_PLUGIN, Context.MODE_PRIVATE).getAbsolutePath();
 	}
 
 	public DexClassLoader createClassLoader(String absolutePluginApkPath, ClassLoader parentClassLoader) {
 		String apkParentDir = new File(absolutePluginApkPath).getParent();
 
-		File optDir = new File(apkParentDir, "dalvik-cache");
+		File optDir = new File(apkParentDir, Constants.DIR_DALVIK_CACHE);
 		optDir.mkdirs();
 
-		File libDir = new File(apkParentDir, "lib");
+		File libDir = new File(apkParentDir, Constants.DIR_NATIVE_LIB);
 		libDir.mkdirs();
 		DexClassLoader dexClassLoader = new DexClassLoader(absolutePluginApkPath, optDir.getAbsolutePath(), libDir.getAbsolutePath(), parentClassLoader);
 		return dexClassLoader;
