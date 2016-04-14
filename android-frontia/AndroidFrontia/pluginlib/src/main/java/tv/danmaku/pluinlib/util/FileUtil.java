@@ -1,7 +1,6 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.util;
 
 import android.os.Build;
-import android.widget.Toast;
 
 import java.io.*;
 import java.util.Enumeration;
@@ -30,7 +29,7 @@ public class FileUtil {
 	}
 
 	public static boolean copyFile(final InputStream inputStream, String dest) {
-		LogUtil.d(TAG,"copyFile to " + dest);
+		LogUtil.d(TAG, "copyFile to " + dest);
 		FileOutputStream oputStream = null;
 		try {
 			File destFile = new File(dest);

@@ -1,4 +1,4 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.util;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -19,7 +19,7 @@ public class ApkHelper {
 	public static final String TAG = "ApkHelper";
 
 	public static DexClassLoader createDexClassLoader(Context context, String dexPath, String internalSoLibDir) {
-		LogUtil.i(TAG,"createDexClassLoader");
+		LogUtil.i(TAG, "createDexClassLoader");
 		File dexOutputDir = context.getDir("dex", Context.MODE_PRIVATE);
 		String dexOutputPath = dexOutputDir.getAbsolutePath();
 		ClassLoader parentClassLoader = ApkHelper.class.getClassLoader(); //这里使用ApkHelper的CLassLoader作为插件的父ClassLoader，说明插件并非独立运行，可以和宿主有公共库；

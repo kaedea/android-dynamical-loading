@@ -1,4 +1,4 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.core;
 
 /**
  * Copyright (c) 2015 BiliBili Inc.

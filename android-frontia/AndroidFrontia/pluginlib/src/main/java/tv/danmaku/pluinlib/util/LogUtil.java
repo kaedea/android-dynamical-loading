@@ -1,4 +1,4 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.util;
 
 import android.util.Log;
 

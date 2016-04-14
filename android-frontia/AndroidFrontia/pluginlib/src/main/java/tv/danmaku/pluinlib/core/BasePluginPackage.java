@@ -1,4 +1,4 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.core;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;

@@ -1,6 +1,9 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.core;
 
 import android.content.Context;
+import tv.danmaku.pluinlib.util.LogUtil;
+import tv.danmaku.pluinlib.SimplePluginPackage;
+import tv.danmaku.pluinlib.SoLibPluginPackage;
 
 /**
  * Copyright (c) 2016 BiliBili Inc.

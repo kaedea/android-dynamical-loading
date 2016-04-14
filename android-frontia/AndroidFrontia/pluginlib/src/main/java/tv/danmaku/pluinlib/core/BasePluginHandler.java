@@ -1,8 +1,11 @@
-package tv.danmaku.pluinlib;
+package tv.danmaku.pluinlib.core;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.text.TextUtils;
+import tv.danmaku.pluinlib.util.ApkHelper;
+import tv.danmaku.pluinlib.util.FileUtil;
+import tv.danmaku.pluinlib.util.LogUtil;
 
 import java.io.File;
 import java.util.HashMap;

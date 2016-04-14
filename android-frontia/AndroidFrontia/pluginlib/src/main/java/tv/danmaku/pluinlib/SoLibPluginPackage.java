@@ -3,6 +3,9 @@ package tv.danmaku.pluinlib;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import dalvik.system.DexClassLoader;
+import tv.danmaku.pluinlib.util.ApkHelper;
+import tv.danmaku.pluinlib.core.BasePluginPackage;
+import tv.danmaku.pluinlib.util.FileUtil;
 
 import java.io.File;
 import java.util.Set;

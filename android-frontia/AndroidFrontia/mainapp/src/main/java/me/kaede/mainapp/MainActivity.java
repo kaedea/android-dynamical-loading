@@ -11,9 +11,9 @@ import android.widget.Toast;
 import edu.gemini.tinyplayer.R;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
-import tv.danmaku.pluinlib.BasePluginHandler;
-import tv.danmaku.pluinlib.BasePluginPackage;
-import tv.danmaku.pluinlib.LogUtil;
+import tv.danmaku.pluinlib.core.BasePluginHandler;
+import tv.danmaku.pluinlib.core.BasePluginPackage;
+import tv.danmaku.pluinlib.util.LogUtil;
 
 import java.io.File;
 import java.lang.reflect.Method;
