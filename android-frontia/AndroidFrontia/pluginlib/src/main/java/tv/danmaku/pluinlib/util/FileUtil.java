@@ -1,6 +1,7 @@
 package tv.danmaku.pluinlib.util;
 
 import android.os.Build;
+import tv.danmaku.pluinlib.core.Constants;
 
 import java.io.*;
 import java.util.Enumeration;
@@ -17,7 +18,6 @@ import java.util.zip.ZipFile;
  */
 public class FileUtil {
 	public static final String TAG = "FileUtil";
-	private static final boolean DEBUG = true;
 
 	public static boolean copyFile(String source, String dest) {
 		try {
@@ -140,7 +140,7 @@ public class FileUtil {
 				String relativePath = ze.getName();
 
 				if (!relativePath.startsWith("lib" + File.separator)) {
-					if (DEBUG) {
+					if (Constants.DEBUG) {
 						LogUtil.d("不是lib目录，跳过", relativePath);
 					}
 					continue;
@@ -148,7 +148,7 @@ public class FileUtil {
 
 				if (ze.isDirectory()) {
 					File folder = new File(tempDir, relativePath);
-					if (DEBUG) {
+					if (Constants.DEBUG) {
 						LogUtil.d("正在创建目录", folder.getAbsolutePath());
 					}
 					if (!folder.exists()) {
@@ -260,7 +260,7 @@ public class FileUtil {
 	}
 
 	public static void printAll(File file) {
-		if (DEBUG) {
+		if (Constants.DEBUG) {
 			LogUtil.d("printAll", file.getAbsolutePath());
 			if (file.isDirectory()) {
 				File[] childFiles = file.listFiles();

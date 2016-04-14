@@ -15,13 +15,13 @@ import java.util.Map;
  * Copyright (c) 2016 BiliBili Inc.
  * Created by kaede on 2016/4/8.
  */
-public class BasePluginHandler implements IPluginHandler {
+public class BasePluginManager implements IPluginManager {
 
 	public static final String TAG = "BasePluginHandler";
 	Context context;
 	Map<String, BasePluginPackage> packageHolder;
 
-	public BasePluginHandler(Context context) {
+	public BasePluginManager(Context context) {
 		this.context = context.getApplicationContext();
 		packageHolder = new HashMap<>();
 	}
