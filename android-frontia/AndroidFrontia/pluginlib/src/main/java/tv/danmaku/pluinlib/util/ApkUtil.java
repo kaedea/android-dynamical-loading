@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
  * Copyright (c) 2016 BiliBili Inc.
  * Created by kaede on 2016/4/8.
  */
-public class ApkHelper {
+public class ApkUtil {
 
 	public static final String TAG = "ApkHelper";
 
@@ -22,7 +22,7 @@ public class ApkHelper {
 		LogUtil.i(TAG, "createDexClassLoader");
 		File dexOutputDir = context.getDir("dex", Context.MODE_PRIVATE);
 		String dexOutputPath = dexOutputDir.getAbsolutePath();
-		ClassLoader parentClassLoader = ApkHelper.class.getClassLoader(); //这里使用ApkHelper的CLassLoader作为插件的父ClassLoader，说明插件并非独立运行，可以和宿主有公共库；
+		ClassLoader parentClassLoader = ApkUtil.class.getClassLoader(); //这里使用ApkHelper的CLassLoader作为插件的父ClassLoader，说明插件并非独立运行，可以和宿主有公共库；
 		return new DexClassLoader(dexPath, dexOutputPath, internalSoLibDir, parentClassLoader);
 	}
 

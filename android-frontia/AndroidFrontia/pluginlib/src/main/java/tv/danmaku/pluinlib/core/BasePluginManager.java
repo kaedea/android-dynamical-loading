@@ -5,7 +5,7 @@ import android.content.pm.PackageInfo;
 import android.os.Looper;
 import android.text.TextUtils;
 import tv.danmaku.pluinlib.SoLibPluginPackage;
-import tv.danmaku.pluinlib.util.ApkHelper;
+import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.util.FileUtil;
 import tv.danmaku.pluinlib.util.LogUtil;
 
@@ -50,7 +50,7 @@ public class BasePluginManager implements IPluginManager {
 			}
 		}
 
-		PackageInfo packageInfo = ApkHelper.getPackageInfo(context, pluginPath);
+		PackageInfo packageInfo = ApkUtil.getPackageInfo(context, pluginPath);
 		if (packageInfo == null) {
 			LogUtil.e(TAG, "packageInfo = null");
 			return null;
@@ -96,7 +96,7 @@ public class BasePluginManager implements IPluginManager {
 
 	@Override
 	public Class loadPluginClass(BasePluginPackage basePluginPackage, String className) {
-		return ApkHelper.loadPluginClass(basePluginPackage.classLoader, className);
+		return ApkUtil.loadPluginClass(basePluginPackage.classLoader, className);
 	}
 
 	public boolean checkPluginValid(String pluginPath){

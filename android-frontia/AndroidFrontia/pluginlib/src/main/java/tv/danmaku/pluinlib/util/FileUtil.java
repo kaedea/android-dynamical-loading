@@ -65,57 +65,6 @@ public class FileUtil {
 		return false;
 	}
 
-	public static boolean copySo(File sourceDir, String so, String dest) {
-
-		try {
-
-			boolean isSuccess = false;
-
-			if (Build.VERSION.SDK_INT >= 21) {
-				String[] abis = Build.SUPPORTED_ABIS;
-				if (abis != null) {
-					for (String abi: abis) {
-						LogUtil.d("try supported abi:", abi);
-						String name = "lib" + File.separator + abi + File.separator + so;
-						File sourceFile = new File(sourceDir, name);
-						if (sourceFile.exists()) {
-							isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator +  Constants.DIR_NATIVE_LIB + File.separator + so);
-							//api21 64位系统的目录可能有些不同
-							//copyFile(sourceFile.getAbsolutePath(), dest + File.separator +  name);
-							break;
-						}
-					}
-				}
-			} else {
-				LogUtil.d(TAG,"supported api:"+ Build.CPU_ABI+" "+ Build.CPU_ABI2);
-
-				String name = "lib" + File.separator + Build.CPU_ABI + File.separator + so;
-				File sourceFile = new File(sourceDir, name);
-
-				if (!sourceFile.exists() && Build.CPU_ABI2 != null) {
-					name = "lib" + File.separator + Build.CPU_ABI2 + File.separator + so;
-					sourceFile = new File(sourceDir, name);
-
-					if (!sourceFile.exists()) {
-						name = "lib" + File.separator + "armeabi" + File.separator + so;
-						sourceFile = new File(sourceDir, name);
-					}
-				}
-				if (sourceFile.exists()) {
-					isSuccess = copyFile(sourceFile.getAbsolutePath(), dest + File.separator + Constants.DIR_NATIVE_LIB + File.separator + so);
-				}
-			}
-
-			if (!isSuccess) {
-				LogUtil.w(TAG, "安装 " + so + " 失败: NO_MATCHING_ABIS");
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
-		return true;
-	}
-
 
 	public static Set<String> unZipSo(String apkFile, File tempDir) {
 

@@ -2,7 +2,7 @@ package tv.danmaku.pluinlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import tv.danmaku.pluinlib.util.ApkHelper;
+import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 
 import java.io.File;
@@ -23,9 +23,9 @@ public class SimplePluginPackage extends BasePluginPackage {
 			this.packageInfo = ApkHelper.getPackageInfo(context,packagePath);
 		}*/
 
-		this.classLoader = ApkHelper.createDexClassLoader(context, packagePath, internalSoLibDir);
-		this.assetManager = ApkHelper.createAssetManager(packagePath);
-		this.resources = ApkHelper.createResources(context, this.assetManager);
+		this.classLoader = ApkUtil.createDexClassLoader(context, packagePath, internalSoLibDir);
+		this.assetManager = ApkUtil.createAssetManager(packagePath);
+		this.resources = ApkUtil.createResources(context, this.assetManager);
 		return this;
 	}
 

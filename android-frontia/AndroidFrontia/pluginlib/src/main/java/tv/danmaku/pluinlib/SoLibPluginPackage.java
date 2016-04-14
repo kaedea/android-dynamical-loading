@@ -5,9 +5,10 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import dalvik.system.DexClassLoader;
 import tv.danmaku.pluinlib.core.Constants;
-import tv.danmaku.pluinlib.util.ApkHelper;
+import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 import tv.danmaku.pluinlib.util.FileUtil;
+import tv.danmaku.pluinlib.util.SoLibUtil;
 
 import java.io.File;
 import java.util.Set;
@@ -34,7 +35,7 @@ public class SoLibPluginPackage extends BasePluginPackage {
 	public BasePluginPackage loadPlugin(Context context, String packagePath) {
 
 		if (this.packageInfo == null) {
-			this.packageInfo = ApkHelper.getPackageInfo(context, packagePath);
+			this.packageInfo = ApkUtil.getPackageInfo(context, packagePath);
 		}
 
 		String destApkPath = genInstallPath(context, packageInfo.packageName, String.valueOf(packageInfo.versionCode));
@@ -46,7 +47,7 @@ public class SoLibPluginPackage extends BasePluginPackage {
 			Set<String> soList = FileUtil.unZipSo(packagePath, tempSoDir);
 			if (soList != null) {
 				for (String soName : soList) {
-					FileUtil.copySo(tempSoDir, soName, apkParent.getAbsolutePath());
+					SoLibUtil.copySo(tempSoDir, soName, apkParent.getAbsolutePath());
 				}
 				//删掉临时文件
 				FileUtil.deleteAll(tempSoDir);
@@ -54,8 +55,8 @@ public class SoLibPluginPackage extends BasePluginPackage {
 			FileUtil.deleteAll(new File(apkParent, Constants.DIR_DALVIK_CACHE));
 
 			this.classLoader = createClassLoader(destApkPath, context.getClassLoader());
-			this.assetManager = ApkHelper.createAssetManager(destApkPath);
-			this.resources = ApkHelper.createResources(context, this.assetManager);
+			this.assetManager = ApkUtil.createAssetManager(destApkPath);
+			this.resources = ApkUtil.createResources(context, this.assetManager);
 		}
 
 		return this;
