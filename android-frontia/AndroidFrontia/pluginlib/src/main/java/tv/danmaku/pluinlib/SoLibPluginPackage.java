@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import dalvik.system.DexClassLoader;
+import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
 import tv.danmaku.pluinlib.core.Constants;
 import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
@@ -60,6 +61,11 @@ public class SoLibPluginPackage extends BasePluginPackage {
 		}
 
 		return this;
+	}
+
+	@Override
+	public BaseBehaviour getPluginBehaviour(Object... args) {
+		return null;
 	}
 
 	@SuppressLint("SdCardPath")

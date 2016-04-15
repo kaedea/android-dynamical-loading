@@ -11,6 +11,8 @@ import android.widget.Toast;
 import edu.gemini.tinyplayer.R;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
+import tv.danmaku.pluginbehaiour.TecentVideoPackage;
+import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
 import tv.danmaku.pluinlib.core.BasePluginManager;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 import tv.danmaku.pluinlib.util.LogUtil;
@@ -65,14 +67,17 @@ public class MainActivity extends Activity {
 			Toast.makeText(this, "加载插件失败", Toast.LENGTH_LONG).show();
 		}*/
 
-		basePluginHandler.aysncInitPlugin(tempFile.getAbsolutePath(), new BasePluginManager.OnLoadPluginListener() {
+		/*basePluginHandler.aysncInitPlugin(tempFile.getAbsolutePath(), new BasePluginManager.OnLoadPluginListener() {
 			@Override
 			public void onFinished(String pluginPath, BasePluginPackage basePluginPackage) {
 				MainActivity.this.basePluginPackage = basePluginPackage;
 				Toast.makeText(MainActivity.this, "加载成功", Toast.LENGTH_LONG).show();
 			}
-		});
+		});*/
 
+		basePluginPackage = new TecentVideoPackage();
+		basePluginPackage.pluginPath = tempFile.getAbsolutePath();
+		basePluginPackage = basePluginHandler.loadPlugin(basePluginPackage);
 	}
 
 	public void onCallMethod(View view) {
@@ -87,7 +92,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onPlay(View view) {
-		Class clazz = basePluginHandler.loadPluginClass(basePluginPackage, "me.kaede.pluginpackage.Entry");
+		/*Class clazz = basePluginHandler.loadPluginClass(basePluginPackage, "me.kaede.pluginpackage.Entry");
 		try {
 			Method method = clazz.getMethod("getTencentVideo", Activity.class);
 			ITencentVideo iTencentVideo = (ITencentVideo) method.invoke(null, this);
@@ -96,6 +101,11 @@ public class MainActivity extends Activity {
 			iTencentVideo.play("a0012p8g8cr", 2);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
+
+		ITencentVideo iTencentVideo = (ITencentVideo) basePluginPackage.getPluginBehaviour(this);
+		LinearLayout linearLayout = (LinearLayout) this.findViewById(R.id.player);
+		linearLayout.addView(iTencentVideo.getVideoView(), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+		iTencentVideo.play("a0012p8g8cr", 2);
 	}
 }

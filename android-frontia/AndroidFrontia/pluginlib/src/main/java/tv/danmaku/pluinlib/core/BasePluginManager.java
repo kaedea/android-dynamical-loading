@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.os.Looper;
 import android.text.TextUtils;
 import tv.danmaku.pluinlib.SoLibPluginPackage;
+import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
 import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.util.FileUtil;
 import tv.danmaku.pluinlib.util.LogUtil;
@@ -30,6 +31,46 @@ public class BasePluginManager implements IPluginManager {
 	public BasePluginManager(Context context) {
 		this.context = context.getApplicationContext();
 		packageHolder = new HashMap<>();
+	}
+
+
+	public BasePluginPackage loadPlugin(BasePluginPackage basePluginPackage){
+		if (TextUtils.isEmpty(basePluginPackage.pluginPath) || !new File(basePluginPackage.pluginPath).exists()) {
+			LogUtil.e(TAG, "pluginPath not exist!");
+			return null;
+		}
+		String pluginPath = basePluginPackage.pluginPath;
+
+		// 1.复制到内部临时路径
+		if (!pluginPath.startsWith(context.getCacheDir().getAbsolutePath())) {
+			String tempFilePath = context.getCacheDir().getAbsolutePath() + File.separator + System.currentTimeMillis() + ".apk";
+			if (FileUtil.copyFile(pluginPath, tempFilePath)) {
+				pluginPath = tempFilePath;
+			} else {
+				LogUtil.e(TAG, "复制插件文件失败:" + pluginPath + " to " + tempFilePath);
+				return null;
+			}
+		}
+
+		PackageInfo packageInfo = ApkUtil.getPackageInfo(context, pluginPath);
+		if (packageInfo == null) {
+			LogUtil.e(TAG, "packageInfo = null");
+			return null;
+		}
+
+		// 2.签名校验
+		if (!checkPluginValid(pluginPath)){
+			LogUtil.e(TAG, "签名验证失败!");
+			return null;
+		}
+
+		BasePluginPackage pluginPackage = getPluginPackage(packageInfo.packageName);
+		if (pluginPackage != null) return basePluginPackage;
+
+		basePluginPackage = basePluginPackage.loadPlugin(context, pluginPath);
+		packageHolder.put(packageInfo.packageName, basePluginPackage);
+
+		return basePluginPackage;
 	}
 
 	@Override
@@ -107,6 +148,10 @@ public class BasePluginManager implements IPluginManager {
 		BasePluginPackage basePluginPackage = new SoLibPluginPackage();
 		basePluginPackage.loadPlugin(context,pluginPath);
 		return basePluginPackage;
+	}
+
+	public BaseBehaviour getPluginBehaviour(BasePluginPackage basePluginPackage){
+		return basePluginPackage.getPluginBehaviour();
 	}
 
 	public interface OnLoadPluginListener{

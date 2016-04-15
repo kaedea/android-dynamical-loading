@@ -5,6 +5,8 @@ import android.content.pm.PackageInfo;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import dalvik.system.DexClassLoader;
+import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
+import tv.danmaku.pluinlib.util.ApkUtil;
 
 /**
  * Copyright (c) 2015 BiliBili Inc.
@@ -12,6 +14,7 @@ import dalvik.system.DexClassLoader;
  */
 public abstract class BasePluginPackage {
 
+	public String pluginPath;
 	public String packageName;
 	public String defaultActivity;
 	public DexClassLoader classLoader;
@@ -47,6 +50,12 @@ public abstract class BasePluginPackage {
 
 	public boolean checkPluginValid() {
 		return false;
+	}
+
+	public abstract BaseBehaviour getPluginBehaviour(Object... args);
+
+	public Class loadPluginClass(String className) {
+		return ApkUtil.loadPluginClass(classLoader, className);
 	}
 
 }

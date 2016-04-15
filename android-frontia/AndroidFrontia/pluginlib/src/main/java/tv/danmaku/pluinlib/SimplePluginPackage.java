@@ -2,6 +2,7 @@ package tv.danmaku.pluinlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
 import tv.danmaku.pluinlib.util.ApkUtil;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 
@@ -27,6 +28,11 @@ public class SimplePluginPackage extends BasePluginPackage {
 		this.assetManager = ApkUtil.createAssetManager(packagePath);
 		this.resources = ApkUtil.createResources(context, this.assetManager);
 		return this;
+	}
+
+	@Override
+	public BaseBehaviour getPluginBehaviour(Object... args) {
+		return null;
 	}
 
 	@SuppressLint("SdCardPath")
