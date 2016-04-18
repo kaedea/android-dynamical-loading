@@ -12,8 +12,7 @@ import edu.gemini.tinyplayer.R;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
 import tv.danmaku.pluginbehaiour.TecentVideoPackage;
-import tv.danmaku.pluinlib.bridge.plugin.BaseBehaviour;
-import tv.danmaku.pluinlib.core.BasePluginManager;
+import tv.danmaku.pluinlib.core.PluginManager;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 import tv.danmaku.pluinlib.util.LogUtil;
 
@@ -24,7 +23,7 @@ public class MainActivity extends Activity {
 
 	public static final String TAG = "MainActivity";
 	private BasePluginPackage basePluginPackage;
-	private BasePluginManager basePluginHandler;
+	private PluginManager basePluginHandler;
 	//播放vid
 	private String[] mVideoId = {"t001469z2ma", "y0015vw2o7f",
 			"y0015vw2o7f", "j0015lqcpcu",
@@ -61,7 +60,7 @@ public class MainActivity extends Activity {
 			Toast.makeText(this, "插件不存在", Toast.LENGTH_LONG).show();
 			return;
 		}
-		basePluginHandler = new BasePluginManager(this);
+		basePluginHandler = new PluginManager(this);
 		/*basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
 		if (basePluginPackage == null) {
 			Toast.makeText(this, "加载插件失败", Toast.LENGTH_LONG).show();

@@ -19,8 +19,10 @@ import java.util.concurrent.Executors;
 /**
  * Copyright (c) 2016 BiliBili Inc.
  * Created by kaede on 2016/4/8.
+ *
+ * 插件管理器，提供同步和异步获取插件实体类的接口
  */
-public class BasePluginManager implements IPluginManager {
+public class PluginManager implements IPluginManager {
 
 	public static final String TAG = "BasePluginHandler";
 	Context context;
@@ -28,7 +30,7 @@ public class BasePluginManager implements IPluginManager {
 
 	private ExecutorService loadExecutor = Executors.newCachedThreadPool();
 
-	public BasePluginManager(Context context) {
+	public PluginManager(Context context) {
 		this.context = context.getApplicationContext();
 		packageHolder = new HashMap<>();
 	}
@@ -39,6 +41,7 @@ public class BasePluginManager implements IPluginManager {
 			LogUtil.e(TAG, "pluginPath not exist!");
 			return null;
 		}
+
 		String pluginPath = basePluginPackage.pluginPath;
 
 		// 1.复制到内部临时路径
@@ -47,6 +50,7 @@ public class BasePluginManager implements IPluginManager {
 			if (FileUtil.copyFile(pluginPath, tempFilePath)) {
 				pluginPath = tempFilePath;
 			} else {
+				new File(tempFilePath).delete();
 				LogUtil.e(TAG, "复制插件文件失败:" + pluginPath + " to " + tempFilePath);
 				return null;
 			}
@@ -54,6 +58,7 @@ public class BasePluginManager implements IPluginManager {
 
 		PackageInfo packageInfo = ApkUtil.getPackageInfo(context, pluginPath);
 		if (packageInfo == null) {
+			new File(pluginPath).delete();
 			LogUtil.e(TAG, "packageInfo = null");
 			return null;
 		}
@@ -61,13 +66,16 @@ public class BasePluginManager implements IPluginManager {
 		// 2.签名校验
 		if (!checkPluginValid(pluginPath)){
 			LogUtil.e(TAG, "签名验证失败!");
+			new File(pluginPath).delete();
 			return null;
 		}
 
+		// 3.检查是否已经加载到缓存，有则直接使用缓存
 		BasePluginPackage pluginPackage = getPluginPackage(packageInfo.packageName);
 		if (pluginPackage != null) return basePluginPackage;
 
-		basePluginPackage = basePluginPackage.loadPlugin(context, pluginPath);
+		// 4.加载指定路径上的插件
+		basePluginPackage = basePluginPackage.loadPlugin(context);
 		packageHolder.put(packageInfo.packageName, basePluginPackage);
 
 		return basePluginPackage;
@@ -107,7 +115,12 @@ public class BasePluginManager implements IPluginManager {
 		}
 
 		// 3.加载插件
-		basePluginPackage = new SoLibPluginPackage(packageInfo.packageName);
+		basePluginPackage = new SoLibPluginPackage(){
+			@Override
+			public BaseBehaviour getPluginBehaviour(Object... args) {
+				return null;
+			}
+		};
 		basePluginPackage.loadPlugin(context, pluginPath);
 		packageHolder.put(packageInfo.packageName, basePluginPackage);
 
@@ -145,9 +158,10 @@ public class BasePluginManager implements IPluginManager {
 	}
 
 	public BasePluginPackage createPluginPackage(String pluginPath){
-		BasePluginPackage basePluginPackage = new SoLibPluginPackage();
+		/*BasePluginPackage basePluginPackage = new SoLibPluginPackage();
 		basePluginPackage.loadPlugin(context,pluginPath);
-		return basePluginPackage;
+		return basePluginPackage;*/
+		return null;
 	}
 
 	public BaseBehaviour getPluginBehaviour(BasePluginPackage basePluginPackage){

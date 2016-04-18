@@ -20,7 +20,7 @@ public class TecentVideoPackage extends SoLibPluginPackage {
 			return (ITencentVideo) method.invoke(null, args[0]);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 }
