@@ -1,16 +1,8 @@
 package tv.danmaku.pluinlib.util;
 
-import android.os.Build;
 import tv.danmaku.pluinlib.core.Constants;
 
 import java.io.*;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 /**
  * Copyright (c) 2016 BiliBili Inc.
@@ -66,32 +58,7 @@ public class FileUtil {
 	}
 
 
-	public static void readFileFromJar(String jarFilePath, String metaInfo) {
-		LogUtil.d(TAG,"readFileFromJar:"+ jarFilePath + " "+metaInfo);
-		JarFile jarFile = null;
-		try {
-			jarFile = new JarFile(jarFilePath);
-			JarEntry entry = jarFile.getJarEntry(metaInfo);
-			if (entry != null) {
-				InputStream input = jarFile.getInputStream(entry);
 
-				return;
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (jarFile != null) {
-				try {
-					jarFile.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return;
-
-	}
 
 	/**
 	 * 递归删除文件及文件夹
@@ -106,13 +73,13 @@ public class FileUtil {
 				}
 			}
 		}
-		LogUtil.d("delete", file.getAbsolutePath());
+		LogUtil.d(TAG,"delete: " + file.getAbsolutePath());
 		return file.delete();
 	}
 
 	public static void printAll(File file) {
 		if (Constants.DEBUG) {
-			LogUtil.d("printAll", file.getAbsolutePath());
+			LogUtil.d(TAG,"[printAll] " + file.getAbsolutePath());
 			if (file.isDirectory()) {
 				File[] childFiles = file.listFiles();
 				if (childFiles != null && childFiles.length > 0) {
@@ -124,18 +91,4 @@ public class FileUtil {
 		}
 	}
 
-	public static String streamToString(InputStream input) throws IOException {
-
-		InputStreamReader isr = new InputStreamReader(input);
-		BufferedReader reader = new BufferedReader(isr);
-
-		String line;
-		StringBuffer sb = new StringBuffer();
-		while ((line = reader.readLine()) != null) {
-			sb.append(line);
-		}
-		reader.close();
-		isr.close();
-		return sb.toString();
-	}
 }
