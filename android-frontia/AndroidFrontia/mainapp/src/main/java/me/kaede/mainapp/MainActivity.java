@@ -11,7 +11,7 @@ import android.widget.Toast;
 import edu.gemini.tinyplayer.R;
 import tv.danmaku.pluginbehaiour.ITencentVideo;
 import tv.danmaku.pluginbehaiour.IToast;
-import tv.danmaku.pluginbehaiour.TecentVideoPackage;
+import tv.danmaku.pluginbehaiour.TencentVideoPackage;
 import tv.danmaku.pluinlib.core.PluginManager;
 import tv.danmaku.pluinlib.core.BasePluginPackage;
 import tv.danmaku.pluinlib.util.LogUtil;
@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
 			Toast.makeText(this, "插件不存在", Toast.LENGTH_LONG).show();
 			return;
 		}
-		basePluginHandler = new PluginManager(this);
+		basePluginHandler = PluginManager.getInstance(this);
 		/*basePluginPackage = basePluginHandler.initPlugin(tempFile.getAbsolutePath());
 		if (basePluginPackage == null) {
 			Toast.makeText(this, "加载插件失败", Toast.LENGTH_LONG).show();
@@ -74,9 +74,16 @@ public class MainActivity extends Activity {
 			}
 		});*/
 
-		basePluginPackage = new TecentVideoPackage();
-		basePluginPackage.pluginPath = tempFile.getAbsolutePath();
-		basePluginPackage = basePluginHandler.loadPlugin(basePluginPackage);
+		basePluginPackage = new TencentVideoPackage(tempFile.getAbsolutePath());
+		// basePluginPackage = basePluginHandler.loadPlugin(basePluginPackage);
+
+		basePluginHandler.loadPluginAysnc(basePluginPackage, new PluginManager.OnLoadPluginListener() {
+			@Override
+			public void onFinished(String pluginPath, BasePluginPackage basePluginPackage) {
+				Toast.makeText(MainActivity.this, "加载成功", Toast.LENGTH_LONG).show();
+				MainActivity.this.basePluginPackage = basePluginPackage;
+			}
+		});
 	}
 
 	public void onCallMethod(View view) {

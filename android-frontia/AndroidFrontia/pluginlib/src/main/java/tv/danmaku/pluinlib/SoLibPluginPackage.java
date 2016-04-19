@@ -23,13 +23,8 @@ public abstract class SoLibPluginPackage extends BasePluginPackage {
 
 	public static final String TAG = "SoLibPluginPackage";
 
-	public SoLibPluginPackage() {
-
-	}
-
-	@Override
-	public BasePluginPackage loadPlugin(Context context) {
-		return loadPlugin(context, pluginPath);
+	public SoLibPluginPackage(String pluginPath) {
+		super(pluginPath);
 	}
 
 	@Override

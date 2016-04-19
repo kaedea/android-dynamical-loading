@@ -13,7 +13,8 @@ import tv.danmaku.pluinlib.util.ApkUtil;
  */
 public abstract class SimplePluginPackage extends BasePluginPackage {
 
-	public SimplePluginPackage() {
+	public SimplePluginPackage(String pluginPath) {
+		super(pluginPath);
 	}
 
 	@Override

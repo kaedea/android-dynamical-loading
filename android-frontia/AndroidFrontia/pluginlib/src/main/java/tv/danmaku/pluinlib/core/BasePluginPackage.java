@@ -27,8 +27,8 @@ public abstract class BasePluginPackage {
 
 	public PackageInfo packageInfo;
 
-	public BasePluginPackage(){
-
+	public BasePluginPackage(String pluginPath){
+		this.pluginPath = pluginPath;
 	}
 
 	@Override
@@ -46,8 +46,8 @@ public abstract class BasePluginPackage {
 	 * @param context Context实例
 	 * @return 完成加载工作的实体类
 	 */
-	public BasePluginPackage loadPlugin(Context context){
-		return null;
+	public BasePluginPackage loadPlugin(Context context) {
+		return loadPlugin(context, pluginPath);
 	}
 
 	public abstract BasePluginPackage loadPlugin(Context context, String packagePath);

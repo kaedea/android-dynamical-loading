@@ -10,7 +10,11 @@ import java.lang.reflect.Method;
  * Copyright (c) 2016 BiliBili Inc.
  * Created by kaede on 2016/4/14.
  */
-public class TecentVideoPackage extends SoLibPluginPackage {
+public class TencentVideoPackage extends SoLibPluginPackage {
+
+	public TencentVideoPackage(String pluginPath) {
+		super(pluginPath);
+	}
 
 	@Override
 	public BaseBehaviour getPluginBehaviour(Object... args) {
