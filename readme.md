@@ -2,6 +2,8 @@
 ![android-dynamical-loading](doc/dl.jpg "android-dynamical-loading")
 
 ## 项目介绍
+
+[![Join the chat at https://gitter.im/kaedea/android-dynamical-loading](https://badges.gitter.im/kaedea/android-dynamical-loading.svg)](https://gitter.im/kaedea/android-dynamical-loading?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 在Android开发中采用基于ClassLoader的动态加载技术，可以达到不安装新APK就升级APP的目的，也可以用来修复一些紧急BUG。本Repo的主要内容是我对Android动态加载机制的一些研究、总结文章和Sample项目。
 
 ## 目录结构
