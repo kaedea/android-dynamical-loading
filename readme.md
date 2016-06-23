@@ -12,6 +12,7 @@
 #### 目录结构
 | 文件夹        |     说明     |
 | :----------- | :-----------|
+|android-frontia | Android插件化开发框架 |
 |apk  | 用于演示动态加载的APK文件 |
 |doc  | 对动态加载机制研究以及DEMO项目源码分析的[文档](https://github.com/kaedea/android-dynamical-loading/tree/master/doc) |
 |classloader-working | 分析Android中ClassLoader工作机制的DEMO项目|
