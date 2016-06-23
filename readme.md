@@ -20,7 +20,7 @@
 | level2_dynamic-load-pluginapk     |    中级动态加载，项目来自[dynamic-load-apk](https://github.com/singwhatiwanna/dynamic-load-apk)，代理Activity模式，插件APK里的Activity/Service等组件，但是宿主APK和插件APK都得遵循事先定好的框架  |
 |level3_dynamic-load-normalapk|终极动态加载，项目来自[android-pluginmgr](https://github.com/houkx/android-pluginmgr)，动态创建Activity模式，宿主APK不用注册插件APK的组件就能直接启动普通第三方APK的Activity|
 
-##### 动态加载系列文章
+#### 动态加载系列文章
 说到动态加载，我们经常使用“插件化”、“热修复”、“热部署”等词汇，所以大家应该不会陌生。本系列的文章的主要目的是分析一下整个动态加载的过程，重点分析其中的关键技术点，并且开发一个比较灵活的动态加载框架，用于满足不同程度的业务需求。
 
 在Android开发中采用动态加载技术，可以达到不安装新的APK就升级APP功能的目的，可以用来到达快速发版的目的，也可以用来修复一些紧急BUG。
@@ -37,12 +37,12 @@
  6. 除了ClassLoader之外的动态修改代码的技术（HotFix）；
  7. 一些动态加载的开源项目；
 
-地址：[简单易懂的介绍](https://zhuanlan.zhihu.com/p/20515156)
+地址：[简单易懂的介绍](http://kaedea.com/2016/02/06/android-dynamical-loading-01-introduction/)
 <br>
 
 ##### 2. 动态加载的分类
-内容：介绍一下动态加载的类型，理清一下动态加载、插件化、热部署、热修复等技术之间的关系。
-地址：[动态加载的分类](https://zhuanlan.zhihu.com/p/20893580)
+内容：介绍一下动态加载的类型，理清一下动态加载、插件化、热部署、热修复等技术之间的关系。<br>
+地址：[动态加载的分类](http://kaedea.com/2016/05/14/android-dynamical-loading-02-type/)
 <br>
 
 ##### 3. 类加载器ClassLoader的工作机制
@@ -53,7 +53,7 @@
  4. 使用ClassLoader加载外部类需要注意的一些问题；
  5. 自定义ClassLoader（Hack开发）
 
-地址：[ClassLoader的工作机制](https://zhuanlan.zhihu.com/p/20524252)
+地址：[ClassLoader的工作机制](http://kaedea.com/2016/02/07/android-dynamical-loading-02-classloader/)
 <br>
 
 ##### 4. 加载SD卡的SO库
@@ -62,12 +62,12 @@
  2. 分析Android中加载SO库相关的源码；
  3. 如何加载SD卡中的SO库（也是动态加载APK需要解决的问题）；
 
-地址：[加载SD卡的SO库](https://zhuanlan.zhihu.com/p/21303038)
+地址：[加载SD卡的SO库](http://kaedea.com/2016/06/01/android-dynamical-loading-03-so-in-sdcard/)
 <br>
 
 ##### 5. 使用SO库时需要注意的一些问题
-内容：介绍使用SO库开发时的一些坑，提供从网络下载并加载SO库的策略。
-地址：[加载SD卡的SO库](https://zhuanlan.zhihu.com/p/21302804)
+内容：介绍使用SO库开发时的一些坑，提供从网络下载并加载SO库的策略。<br>
+地址：[使用SO库时需要注意的一些问题](http://kaedea.com/2016/06/04/android-dynamical-loading-04-so-problems/)
 <br>
 
 ##### 6. 简单的动态加载模式
@@ -76,7 +76,7 @@
  2. 如何加载dex文件里面的类；
  3. 动态加载dex文件在ART虚拟机的兼容性问题；
 
-地址：[简单加载模式](http://segmentfault.com/a/1190000004062952)
+地址：[简单加载模式](http://kaedea.com/2016/06/05/android-dynamical-loading-05-so-simple-mode/)
 <br>
 
 ##### 7. 代理Activity的模式
@@ -84,7 +84,7 @@
  1. 如何启动插件APK中没有注册的Activity
  2. 代理Activity模式开源项目“dynamic-load-apk”
 
-地址：[代理Activity模式](http://segmentfault.com/a/1190000004062972)
+地址：[代理Activity模式](http://kaedea.com/2016/06/10/android-dynamical-loading-06-proxy-activity/)
 <br>
 
 ##### 8. 动态创建Activity的模式
@@ -94,7 +94,7 @@
  3. 动态创建Activity模式开源项目“android-pluginmgr”
  4. 代理模式与动态创建类模式的区别；
 
-地址：[动态创建Activity模式](http://segmentfault.com/a/1190000004077469)
+地址：[动态创建Activity模式](http://kaedea.com/2016/06/14/android-dynamical-loading-07-dynamic-activity/)
 
 
 #### 还未发布的内容
