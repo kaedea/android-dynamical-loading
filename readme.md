@@ -1,5 +1,5 @@
 
-![android-dynamical-loading](doc/dl.jpg "android-dynamical-loading")
+![android-dynamical-loading](tech-dynamical-loading/doc/dl.jpg "android-dynamical-loading")
 
 #### 项目介绍
 
@@ -15,21 +15,18 @@
 |[android-frontia](android-frontia/) | Android 插件化开发框架 Frontia |
 |[tech-dynamical-loading](/tech-dynamical-loading) | Android 动态加载技术文章以及相关项目 |
 
-其中，**android-frontia** 是基于 ClassLoader 的插件化框架，相比其他开源项目，Frontia 的特点更加专注于插件的下载、更新、安装、管理，以及插件和宿主之间的通信。**tech-dynamical-loading** 是 Android 动态加载加载技术分析的系列文章以及相关项目。
+其中，**android-frontia** 是基于 ClassLoader 的插件化框架，相比其他开源项目，Frontia 的特点更加专注于插件的下载、更新、安装、管理，以及插件和宿主之间的交互。**tech-dynamical-loading** 是 Android 动态加载加载技术分析的系列文章以及相关项目。
 
 具体说明请进入相关目录。
 
 #### LICENSE
 Copyright (C) 2016 Kaede(谢晓枫) <kidhaibara@gmail.com> <br>
 Copyright (C) 2015 HouKx <hkx.aidream@gmail.com> <br>
-Copyright (C) 2014 singwhatiwanna(任玉刚) <singwhatiwanna@gmail.com>
-
+Copyright (C) 2014 singwhatiwanna(任玉刚) <singwhatiwanna@gmail.com> <br>
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
+You may obtain a copy of the License at  <br>
+　　http://www.apache.org/licenses/LICENSE-2.0 <br>
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
