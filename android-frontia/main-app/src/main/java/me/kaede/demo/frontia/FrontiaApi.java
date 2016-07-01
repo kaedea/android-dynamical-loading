@@ -3,11 +3,11 @@ package me.kaede.demo.frontia;
 
 import me.kaede.demo.frontia.bridge.LoginApiImpl;
 import me.kaede.demo.frontia.bridge.UserInfoApiImpl;
-import tv.danmaku.frontia.core.PluginConstants;
-import tv.danmaku.pluginbehaiour.LoginApi;
-import tv.danmaku.pluginbehaiour.UserInfoApi;
-import tv.danmaku.frontia.bridge.host.HostApiManager;
-import tv.danmaku.frontia.bridge.host.hostapi.BaseApi;
+import me.kaede.frontia.core.PluginConstants;
+import me.kaede.pluginbehaviour.LoginApi;
+import me.kaede.pluginbehaviour.UserInfoApi;
+import me.kaede.frontia.bridge.host.HostApiManager;
+import me.kaede.frontia.bridge.host.hostapi.BaseApi;
 
 import java.util.HashMap;
 import java.util.Map;

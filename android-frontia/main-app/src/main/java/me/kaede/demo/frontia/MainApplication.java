@@ -1,7 +1,7 @@
 package me.kaede.demo.frontia;
 
 import android.app.Application;
-import tv.danmaku.frontia.core.PluginManager;
+import me.kaede.frontia.core.PluginManager;
 
 /**
  * Created by Kaede on 16/6/28.

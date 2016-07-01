@@ -1,1 +1,1 @@
-include ':main-app', ':video-plugin', ':frontia', ':video-plugin-behaviour'
+include ':main-app', ':video-plugin', ':frontia', ':plugin-behaviour'

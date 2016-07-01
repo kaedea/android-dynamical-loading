@@ -26,6 +26,6 @@ project.afterEvaluate {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':video-plugin-behaviour')
+    compile project(':plugin-behaviour')
     // compile project(':VideoPlugin')
 }

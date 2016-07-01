@@ -76,6 +76,6 @@ dependencies {
     compile files('libs/TVK_MediaPlayer-all-V3.1.0.135.jar')
     // provided
     provided files(project(':frontia').getBuildDir().absolutePath + '/intermediates/exploded-aar/com.android.support/appcompat-v7/' + rootProject.ext.androidSupportLibraryVersion + '/jars/classes.jar')
-    provided files(project(':frontia').getBuildDir().absolutePath + '/intermediates/bundles/debug/classes.jar')
-    provided files(project(':video-plugin-behaviour').getBuildDir().absolutePath + '/intermediates/bundles/debug/classes.jar')
+    provided files(project(':frontia').getBuildDir().absolutePath + '/intermediates/bundles/release/classes.jar')
+    provided files(project(':plugin-behaviour').getBuildDir().absolutePath + '/intermediates/bundles/debug/classes.jar')
 }

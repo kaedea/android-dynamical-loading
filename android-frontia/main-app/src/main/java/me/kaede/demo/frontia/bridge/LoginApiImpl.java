@@ -1,7 +1,7 @@
 package me.kaede.demo.frontia.bridge;
 
 import android.content.Context;
-import tv.danmaku.pluginbehaiour.LoginApi;
+import me.kaede.pluginbehaviour.LoginApi;
 
 
 /**

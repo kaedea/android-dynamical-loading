@@ -16,9 +16,9 @@
 #   public *;
 #}
 
--keep public class * extends tv.danmaku.frontia.core.BasePluginPackage
--keep public class * extends tv.danmaku.frontia.bridge.plugin.BaseBehaviour
--keep class tv.danmaku.frontia.** {
+-keep public class * extends me.kaede.frontia.core.BasePluginPackage
+-keep public class * extends me.kaede.frontia.bridge.plugin.BaseBehaviour
+-keep class me.kaede.frontia.** {
     <fields>;
     <methods>;
 }

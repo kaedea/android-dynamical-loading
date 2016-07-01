@@ -2,10 +2,10 @@ package me.kaede.demo.frontia;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import tv.danmaku.frontia.core.BasePluginPackage;
-import tv.danmaku.frontia.core.BasePluginRequest;
-import tv.danmaku.frontia.core.error.UpdatePluginException;
-import tv.danmaku.pluginbehaiour.TencentVideoPackage;
+import me.kaede.frontia.core.BasePluginPackage;
+import me.kaede.frontia.core.BasePluginRequest;
+import me.kaede.frontia.core.error.UpdatePluginException;
+import me.kaede.pluginbehaviour.videosdk.TencentVideoPackage;
 
 /**
  * Created by Kaede on 16/6/28.

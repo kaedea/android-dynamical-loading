@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import edu.gemini.tinyplayer.R;
-import tv.danmaku.frontia.core.BasePluginRequest;
-import tv.danmaku.frontia.core.PluginManager;
-import tv.danmaku.frontia.core.error.IllegalPluginException;
-import tv.danmaku.frontia.core.update.PluginUpdateHandler;
-import tv.danmaku.pluginbehaiour.ITencentVideo;
+import me.kaede.frontia.core.BasePluginRequest;
+import me.kaede.frontia.core.PluginManager;
+import me.kaede.frontia.core.error.IllegalPluginException;
+import me.kaede.frontia.core.update.PluginUpdateHandler;
+import me.kaede.pluginbehaviour.videosdk.ITencentVideo;
 
 public class VideoActivity extends AppCompatActivity implements View.OnClickListener {
 	public static final String TAG = "VideoActivity";
@@ -118,9 +118,12 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
 						if (pluginRequest.getState() == BasePluginRequest.REQUEST_LOAD_PLUGIN_SUCCESS) {
 							try {
 								mTencentVideo = (ITencentVideo) pluginRequest.pluginPackage.getPluginBehaviour(VideoActivity.this);
-								mVideoContainer.addView(mTencentVideo.getVideoView(), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-								mBtnPlayNext.setEnabled(true);
-								mBtnInitSdkOnline.setText("加载成功");
+								if (mTencentVideo != null) {
+									mVideoContainer.addView(mTencentVideo.getVideoView(), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+									mBtnPlayNext.setEnabled(true);
+									mBtnInitSdkOnline.setText("加载成功");
+								} else
+									throw new IllegalPluginException("load class fail");
 							} catch (IllegalPluginException e) {
 								e.printStackTrace();
 								pluginRequest.switchState(BasePluginRequest.REQUEST_GET_BEHAVIOUR_FAIL);

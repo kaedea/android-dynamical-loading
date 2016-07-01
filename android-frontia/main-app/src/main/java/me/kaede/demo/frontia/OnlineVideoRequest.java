@@ -6,11 +6,11 @@ import android.text.TextUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import tv.danmaku.frontia.core.BasePluginPackage;
-import tv.danmaku.frontia.core.BasePluginRequest;
-import tv.danmaku.frontia.core.error.UpdatePluginException;
-import tv.danmaku.frontia.core.update.RemotePluginInfo;
-import tv.danmaku.pluginbehaiour.TencentVideoPackage;
+import me.kaede.frontia.core.BasePluginPackage;
+import me.kaede.frontia.core.BasePluginRequest;
+import me.kaede.frontia.core.error.UpdatePluginException;
+import me.kaede.frontia.core.update.RemotePluginInfo;
+import me.kaede.pluginbehaviour.videosdk.TencentVideoPackage;
 
 import java.io.IOException;
 import java.io.InputStream;
