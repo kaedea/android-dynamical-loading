@@ -1,8 +1,8 @@
-package me.kaede.mainapp.bridge;
+package me.kaede.demo.frontia.bridge;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import me.kaede.mainapp.YLUserInfoFragment;
+import me.kaede.demo.frontia.YLUserInfoFragment;
 import tv.danmaku.pluginbehaiour.UserInfoApi;
 
 /**

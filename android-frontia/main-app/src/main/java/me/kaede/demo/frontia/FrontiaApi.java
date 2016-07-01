@@ -1,10 +1,9 @@
-package me.kaede.mainapp;
+package me.kaede.demo.frontia;
 
 
-import me.kaede.mainapp.bridge.LoginApiImpl;
-import me.kaede.mainapp.bridge.UserInfoApiImpl;
+import me.kaede.demo.frontia.bridge.LoginApiImpl;
+import me.kaede.demo.frontia.bridge.UserInfoApiImpl;
 import tv.danmaku.frontia.core.PluginConstants;
-import tv.danmaku.frontia.core.PluginManager;
 import tv.danmaku.pluginbehaiour.LoginApi;
 import tv.danmaku.pluginbehaiour.UserInfoApi;
 import tv.danmaku.frontia.bridge.host.HostApiManager;
@@ -17,7 +16,7 @@ import java.util.Set;
 /**
  * Created by kaede on 2015/12/7.
  */
-public class Frontia {
+public class FrontiaApi {
 	static Map<Class<? extends BaseApi>, Class<? extends BaseApi>> apisMap;
 
 	static {

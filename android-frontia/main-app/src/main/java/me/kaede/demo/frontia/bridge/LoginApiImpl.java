@@ -1,4 +1,4 @@
-package me.kaede.mainapp.bridge;
+package me.kaede.demo.frontia.bridge;
 
 import android.content.Context;
 import tv.danmaku.pluginbehaiour.LoginApi;

@@ -1,7 +1,6 @@
-package com.kaedea.frontia.demo;
+package me.kaede.demo.frontia;
 
 import android.app.Application;
-import me.kaede.mainapp.Frontia;
 import tv.danmaku.frontia.core.PluginManager;
 
 /**
@@ -11,7 +10,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Frontia.init();
+        FrontiaApi.init();
         PluginManager.getInstance(this).init();
     }
 }

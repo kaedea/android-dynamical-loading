@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
 
     <application
-            android:name="com.kaedea.frontia.demo.MainApplication"
+            android:name="me.kaede.demo.frontia.MainApplication"
             tools:replace="android:label"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -36,7 +36,7 @@
 
         <activity
                 android:screenOrientation="portrait"
-                android:name="com.kaedea.frontia.demo.VideoActivity">
+                android:name="me.kaede.demo.frontia.VideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

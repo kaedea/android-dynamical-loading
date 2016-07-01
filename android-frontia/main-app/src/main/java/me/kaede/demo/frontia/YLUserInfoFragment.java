@@ -1,4 +1,4 @@
-package me.kaede.mainapp;
+package me.kaede.demo.frontia;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
