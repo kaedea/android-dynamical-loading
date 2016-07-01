@@ -11,14 +11,12 @@
 
     <Button
             android:id="@+id/btn_init_sdk"
-            android:onClick="onLoadSimplePlugin"
             android:text="加载播放器插件"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
     <Button
             android:id="@+id/btn_init_sdk_online"
-            android:onClick="onLoadSimplePlugin"
             android:text="从网络加载播放器插件"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -36,7 +34,6 @@
     <Button
             android:enabled="false"
             android:id="@+id/btn_play_next"
-            android:onClick="onLoadSimplePlugin"
             android:text="播放下一个视频"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
