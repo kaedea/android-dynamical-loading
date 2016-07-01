@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Frontia Demo</string>
+    <string name="main_btn1">Button 1</string>
+    <string name="main_btn2">Button 2</string>
+    <string name="main_text1">Text 1</string>
+</resources>

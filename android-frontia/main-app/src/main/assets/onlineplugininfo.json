@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "data": {
+    "clear": 0,
+    "desc": "DEMO项目视频SDK插件",
+    "id": "me.kaede.videoplugin",
+    "versions": [
+      {
+        "enable": 1,
+        "force": 0,
+        "min_build": 1,
+        "size": 10913723,
+        "url": "http://dl.hdslb.com/mobile/upload/videoplugin.apk",
+        "ver_code": 1,
+        "ver_name": "视频插件V2"
+      }
+    ]
+  }
+}

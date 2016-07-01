@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId APPLICATION_PACKAGE
+        multiDexEnabled false
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode Integer.parseInt(VERSION_CODE)
+        versionName VERSION_NAME
+    }
+    signingConfigs {
+        /* 如果需要使用签名检验插件安全的话，记得修改成自己的签名 */
+        release {
+            storeFile rootProject.file('plugin.keystore.jks')
+            storePassword 'Bi2201391'
+            keyAlias 'danmaku'
+            keyPassword 'Bi2201391'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            // 调试模式下，Frontia 不会对插件的签名进行校验；
+            // 生产模式请使用具体签名
+            /*signingConfig signingConfigs.release*/
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    afterEvaluate {
+        android.applicationVariants.all { variant ->
+            if (variant.buildType.name.equals("release")) {
+                variant.outputs.each { output ->
+                    if (output.outputFile != null && output.outputFile.name.endsWith('.apk')) {
+                        // Rename APK
+                        /*def applicationId = 'tmedia'
+                        def versionCode = defaultConfig.versionCode
+                        def versionName = defaultConfig.versionName
+                        def date = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date())
+                        def newName = "${applicationId}_r${versionCode}_v${versionName}_${date}.so"*/
+                        def applicationId = 'videoplugin'
+                        def newName = "${applicationId}.apk"
+                        // Move and Rename APK
+                        def task = project.tasks.create("frontiaCopy${variant.name.capitalize()}VideoPlugin", Copy)
+                        task.from(output.outputFile)
+                        task.rename(output.outputFile.name, newName)
+                        task.into(project(':main-app').projectDir.absolutePath + '/src/main/assets/')
+                        task.dependsOn variant.assemble
+                        // Move ProGuard
+                        /*if (variant.buildType.runProguard) {
+                            def copyTask = project.tasks.create("copy${variant.name.capitalize()}MappingText", Copy)
+                            def buildTypeName = variant.buildType.name
+                            copyTask.from(file("build/outputs/proguard/${buildTypeName}").path)
+                            copyTask.into(file("${variant.name}/proguard").getAbsolutePath())
+                            copyTask.dependsOn variant.assemble
+                            task.dependsOn copyTask
+                        }*/
+                        def publish = project.tasks.create("frontiaPublishVideoPlugin")
+                        publish.dependsOn task
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    // compile
+    compile files('libs/TVK_MediaPlayer-all-V3.1.0.135.jar')
+    // provided
+    provided files(project(':frontia').getBuildDir().absolutePath + '/intermediates/exploded-aar/com.android.support/appcompat-v7/' + rootProject.ext.androidSupportLibraryVersion + '/jars/classes.jar')
+    provided files(project(':frontia').getBuildDir().absolutePath + '/intermediates/bundles/debug/classes.jar')
+    provided files(project(':video-plugin-behaviour').getBuildDir().absolutePath + '/intermediates/bundles/debug/classes.jar')
+}

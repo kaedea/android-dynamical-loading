@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <Button
+            android:id="@+id/btn_init_sdk"
+            android:onClick="onLoadSimplePlugin"
+            android:text="加载播放器插件"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/btn_init_sdk_online"
+            android:onClick="onLoadSimplePlugin"
+            android:text="从网络加载播放器插件"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:layout_margin="5dp"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:id="@+id/player"
+            android:layout_width="match_parent"
+            android:background="#ccc"
+            android:layout_height="200dp">
+    </LinearLayout>
+
+    <Button
+            android:enabled="false"
+            android:id="@+id/btn_play_next"
+            android:onClick="onLoadSimplePlugin"
+            android:text="播放下一个视频"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>
