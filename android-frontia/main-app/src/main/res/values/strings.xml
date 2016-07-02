@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">AndroidFrontiaMainApp</string>
-    <string name="title_activity_live_plugin">LivePluginActivity</string>
-    <string name="title_activity_live_plugin2">LivePluginActivity2</string>
-    <string name="title_activity_live_plugin3">LivePluginActivity3</string>
-    <string name="title_activity_live_plugin4">LivePluginActivity4</string>
+    <string name="app_name">Frontia</string>
 </resources>
