@@ -1,3 +1,5 @@
+![android frontia](doc/banner_frontia_2.jpg "android frontia")
+
 #### Frontia
 Android-Frontia是一个Android的插件化框架（基于ClassLoader的动态加载技术），相比其他开源项目，Frontia 的特点是扩展性强，更加专注于插件的下载、更新、安装、管理，以及插件和宿主之间的交互。
 

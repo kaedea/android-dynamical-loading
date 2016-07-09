@@ -1,5 +1,5 @@
 
-![android-dynamical-loading](tech-dynamical-loading/doc/dl.jpg "android-dynamical-loading")
+![android-dynamical-loading](android-frontia/doc/banner_frontia.jpg "android-dynamical-loading")
 
 #### 项目介绍
 
@@ -20,9 +20,9 @@
 具体说明请进入相关目录。
 
 #### LICENSE
-Copyright (C) 2016 Kaede(谢晓枫) <kidhaibara@gmail.com> <br>
+Copyright (C) 2016 Kaede (谢晓枫) <kidhaibara@gmail.com> <br>
 Copyright (C) 2015 HouKx <hkx.aidream@gmail.com> <br>
-Copyright (C) 2014 singwhatiwanna(任玉刚) <singwhatiwanna@gmail.com>
+Copyright (C) 2014 singwhatiwanna (任玉刚) <singwhatiwanna@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
