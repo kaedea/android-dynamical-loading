@@ -1,4 +1,4 @@
-
+Really Helpful Documentation for everyone
 ![android-dynamical-loading](android-frontia/doc/banner_frontia_2.jpg "android-dynamical-loading")
 
 #### 项目介绍
